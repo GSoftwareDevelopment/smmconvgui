@@ -1,0 +1,213 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CONFIG>
+  <ProjectSession>
+    <Version Value="11"/>
+    <BuildModes Active="Release"/>
+    <Units Count="15">
+      <Unit0>
+        <Filename Value="sfxconvapp.lpr"/>
+        <IsPartOfProject Value="True"/>
+        <EditorIndex Value="2"/>
+        <CursorPos X="22" Y="10"/>
+        <UsageCount Value="68"/>
+        <Loaded Value="True"/>
+      </Unit0>
+      <Unit1>
+        <Filename Value="main.pas"/>
+        <IsPartOfProject Value="True"/>
+        <ComponentName Value="FormMain"/>
+        <HasResources Value="True"/>
+        <ResourceBaseClass Value="Form"/>
+        <IsVisibleTab Value="True"/>
+        <TopLine Value="190"/>
+        <CursorPos X="8" Y="193"/>
+        <UsageCount Value="68"/>
+        <Loaded Value="True"/>
+        <LoadedDesigner Value="True"/>
+      </Unit1>
+      <Unit2>
+        <Filename Value="smm-conv"/>
+        <IsPartOfProject Value="True"/>
+        <EditorIndex Value="-1"/>
+        <WindowIndex Value="-1"/>
+        <TopLine Value="-1"/>
+        <CursorPos X="-1" Y="-1"/>
+        <UsageCount Value="63"/>
+        <DefaultSyntaxHighlighter Value="None"/>
+      </Unit2>
+      <Unit3>
+        <Filename Value="output.pas"/>
+        <IsPartOfProject Value="True"/>
+        <ComponentName Value="FormOutput"/>
+        <HasResources Value="True"/>
+        <ResourceBaseClass Value="Form"/>
+        <EditorIndex Value="-1"/>
+        <TopLine Value="12"/>
+        <CursorPos Y="34"/>
+        <UsageCount Value="30"/>
+      </Unit3>
+      <Unit4>
+        <Filename Value="logic.pas"/>
+        <IsPartOfProject Value="True"/>
+        <EditorIndex Value="1"/>
+        <TopLine Value="33"/>
+        <CursorPos X="48" Y="57"/>
+        <UsageCount Value="24"/>
+        <Loaded Value="True"/>
+      </Unit4>
+      <Unit5>
+        <Filename Value="/usr/lib/lazarus/2.0.0/lcl/include/customform.inc"/>
+        <EditorIndex Value="-1"/>
+        <TopLine Value="1467"/>
+        <CursorPos Y="1478"/>
+        <UsageCount Value="10"/>
+      </Unit5>
+      <Unit6>
+        <Filename Value="../SFX-Engine/smm-conv/bin/smm-conv"/>
+        <EditorIndex Value="-1"/>
+        <WindowIndex Value="-1"/>
+        <TopLine Value="-1"/>
+        <CursorPos X="-1" Y="-1"/>
+        <UsageCount Value="16"/>
+        <DefaultSyntaxHighlighter Value="None"/>
+      </Unit6>
+      <Unit7>
+        <Filename Value="formoutput.pas"/>
+        <ComponentName Value="FormOutput"/>
+        <ResourceBaseClass Value="Form"/>
+        <UnitName Value="formOutput"/>
+        <EditorIndex Value="-1"/>
+        <TopLine Value="3"/>
+        <CursorPos X="3" Y="19"/>
+        <UsageCount Value="20"/>
+      </Unit7>
+      <Unit8>
+        <Filename Value="main.lfm"/>
+        <EditorIndex Value="-1"/>
+        <TopLine Value="85"/>
+        <UsageCount Value="9"/>
+        <DefaultSyntaxHighlighter Value="LFM"/>
+      </Unit8>
+      <Unit9>
+        <Filename Value="/usr/lib/lazarus/2.0.0/lcl/forms.pp"/>
+        <UnitName Value="Forms"/>
+        <EditorIndex Value="-1"/>
+        <TopLine Value="85"/>
+        <CursorPos X="6" Y="21"/>
+        <UsageCount Value="10"/>
+      </Unit9>
+      <Unit10>
+        <Filename Value="/usr/lib/lazarus/2.0.0/lcl/include/control.inc"/>
+        <EditorIndex Value="-1"/>
+        <TopLine Value="2232"/>
+        <CursorPos Y="2244"/>
+        <UsageCount Value="10"/>
+      </Unit10>
+      <Unit11>
+        <Filename Value="/usr/lib/lazarus/2.0.0/lcl/include/wincontrol.inc"/>
+        <EditorIndex Value="-1"/>
+        <TopLine Value="5408"/>
+        <CursorPos Y="5420"/>
+        <UsageCount Value="10"/>
+      </Unit11>
+      <Unit12>
+        <Filename Value="/usr/lib/lazarus/2.0.0/lcl/lclmessageglue.pas"/>
+        <UnitName Value="LCLMessageGlue"/>
+        <EditorIndex Value="-1"/>
+        <TopLine Value="107"/>
+        <CursorPos Y="123"/>
+        <UsageCount Value="10"/>
+      </Unit12>
+      <Unit13>
+        <Filename Value="/usr/lib/lazarus/2.0.0/lcl/interfaces/gtk2/gtk2proc.inc"/>
+        <EditorIndex Value="-1"/>
+        <TopLine Value="3769"/>
+        <CursorPos Y="3783"/>
+        <UsageCount Value="10"/>
+      </Unit13>
+      <Unit14>
+        <Filename Value="/usr/lib/lazarus/2.0.0/lcl/interfaces/gtk2/gtk2callback.inc"/>
+        <EditorIndex Value="-1"/>
+        <TopLine Value="1218"/>
+        <CursorPos Y="1231"/>
+        <UsageCount Value="10"/>
+      </Unit14>
+    </Units>
+    <JumpHistory Count="15" HistoryIndex="14">
+      <Position1>
+        <Filename Value="main.pas"/>
+        <Caret Line="101" TopLine="94"/>
+      </Position1>
+      <Position2>
+        <Filename Value="main.pas"/>
+        <Caret Line="191" TopLine="190"/>
+      </Position2>
+      <Position3>
+        <Filename Value="main.pas"/>
+        <Caret Line="111" TopLine="102"/>
+      </Position3>
+      <Position4>
+        <Filename Value="main.pas"/>
+        <Caret Line="76" Column="20" TopLine="53"/>
+      </Position4>
+      <Position5>
+        <Filename Value="main.pas"/>
+        <Caret Line="109" TopLine="90"/>
+      </Position5>
+      <Position6>
+        <Filename Value="logic.pas"/>
+        <Caret Line="37" TopLine="21"/>
+      </Position6>
+      <Position7>
+        <Filename Value="logic.pas"/>
+        <Caret Line="38" TopLine="21"/>
+      </Position7>
+      <Position8>
+        <Filename Value="main.pas"/>
+        <Caret Line="288" TopLine="267"/>
+      </Position8>
+      <Position9>
+        <Filename Value="logic.pas"/>
+        <Caret Line="37" TopLine="21"/>
+      </Position9>
+      <Position10>
+        <Filename Value="logic.pas"/>
+        <Caret Line="38" TopLine="21"/>
+      </Position10>
+      <Position11>
+        <Filename Value="main.pas"/>
+        <Caret Line="288" Column="22" TopLine="267"/>
+      </Position11>
+      <Position12>
+        <Filename Value="main.pas"/>
+        <Caret Line="77" TopLine="61"/>
+      </Position12>
+      <Position13>
+        <Filename Value="main.pas"/>
+        <Caret Line="138" Column="17" TopLine="138"/>
+      </Position13>
+      <Position14>
+        <Filename Value="main.pas"/>
+        <Caret Line="102" TopLine="102"/>
+      </Position14>
+      <Position15>
+        <Filename Value="main.pas"/>
+        <Caret Line="79" TopLine="78"/>
+      </Position15>
+    </JumpHistory>
+    <RunParams>
+      <FormatVersion Value="2"/>
+      <Modes Count="0" ActiveMode=""/>
+    </RunParams>
+  </ProjectSession>
+  <Debugging>
+    <Watches Count="2">
+      <Item1 ClassAutoCast="True">
+        <Expression Value="Form1.Process1.ExitStatus"/>
+      </Item1>
+      <Item2>
+        <Expression Value="Pro.Parameters.Items"/>
+      </Item2>
+    </Watches>
+  </Debugging>
+</CONFIG>

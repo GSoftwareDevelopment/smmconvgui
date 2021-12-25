@@ -1,0 +1,12 @@
+object FormOutput: TFormOutput
+  Left = 545
+  Height = 240
+  Top = 250
+  Width = 320
+  BorderStyle = bsDialog
+  Caption = 'Processing'
+  FormStyle = fsMDIForm
+  Position = poMainFormCenter
+  LCLVersion = '2.0.0.4'
+  Scaled = False
+end
