@@ -5,7 +5,7 @@ unit output;
 interface
 
 uses
-  Classes, SysUtils, Forms, Controls, Graphics, Dialogs, StdCtrls;
+  Classes, SysUtils, Forms, Controls, StdCtrls;
 
 type
 
@@ -13,8 +13,7 @@ type
 
   TFormOutput = class(TForm)
     Button1: TButton;
-    Label1: TLabel;
-    ListBox1: TListBox;
+    memo: TMemo;
   private
 
   public

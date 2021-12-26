@@ -6,7 +6,7 @@ interface
 
 uses
   Classes, SysUtils, Forms, Controls, Graphics, Dialogs, StdCtrls,
-  ExtCtrls, Buttons;
+  ExtCtrls, Buttons, ComCtrls, EditBtn;
 
 type
 
@@ -15,9 +15,8 @@ type
   TFormMain = class(TForm)
     butDelProfile: TButton;
     butStart: TBitBtn;
-    butChoiceFile: TButton;
-    butSaveFile: TButton;
     butAddProfile: TButton;
+    butAbout: TButton;
     cb_audioBuf: TCheckBox;
     cb_engineRegs: TCheckBox;
     cb_chnRegs: TCheckBox;
@@ -43,8 +42,8 @@ type
     addrTABTab: TEdit;
     addrData: TEdit;
     ConfigList: TComboBox;
-    fileInName: TEdit;
-    fileOutName: TEdit;
+    FileInName: TFileNameEdit;
+    FileOutName: TFileNameEdit;
     Label1: TLabel;
     Label2: TLabel;
     Label3: TLabel;
@@ -53,13 +52,10 @@ type
     grp_apifiles: TCheckGroup;
     grp_addr: TGroupBox;
     grp_reduce: TRadioGroup;
-    OpenSMMDialog: TOpenDialog;
-    SaveDialog: TSaveDialog;
     procedure butDelProfileClick(Sender: TObject);
     procedure butAddProfileClick(Sender: TObject);
-    procedure butChoiceFileClick(Sender: TObject);
-    procedure butSaveFileClick(Sender: TObject);
     procedure butStartClick(Sender: TObject);
+    procedure butAboutClick(Sender: TObject);
     procedure cb_audioBufChange(Sender: TObject);
     procedure cb_chnRegsChange(Sender: TObject);
     procedure cb_dataChange(Sender: TObject);
@@ -87,22 +83,18 @@ var
 
 implementation
 {$R *.lfm}
-uses output, Logic;
+uses about,output, Logic;
 
 { TFormMain }
 
 procedure TFormMain.FormCreate(Sender: TObject);
-Var
-  list:TStringList;
+var
+  list:TStrings;
 
 begin
-  try
-    openConfigINI();
-    list:=getConfigList();
-    ConfigList.Items.AddStrings(list);
-  finally
-    list.Free;
-  end;
+  openConfigINI();
+  list:=ConfigList.Items;
+  getConfigList(list);
 end;
 
 procedure TFormMain.FormDestroy(Sender: TObject);
@@ -110,13 +102,14 @@ begin
   CloseConfigINI();
 end;
 
-procedure TFormMain.butChoiceFileClick(Sender: TObject);
+procedure TFormMain.fileInNameChange(Sender: TObject);
 begin
-  if OpenSMMDialog.Execute then
-  begin
-    fileInName.Text:=OpenSMMDialog.FileName;
-    fileInName.SetFocus;
-  end;
+  butStart.Enabled:=isGood2Start;
+end;
+
+procedure TFormMain.fileOutNameChange(Sender: TObject);
+begin
+  butStart.Enabled:=isGood2Start;
 end;
 
 procedure TFormMain.butAddProfileClick(Sender: TObject);
@@ -127,14 +120,13 @@ Var
 
 begin
   cfgName:='';
-  if not InputQuery('Add configuration','Input conig name:',false,cfgName) then
-    exit;
-  cfgName:=trim(cfgName);
-  if length(cfgName)<3 then
-  begin
-    MessageDlg('Error','Config name is wrong.',mtError,[mbClose],0);
-    Exit;
-  end;
+  repeat
+    if not InputQuery('Add configuration','Input conig name:',false,cfgName) then
+      exit;
+    cfgName:=trim(cfgName);
+    if length(cfgName)<3 then
+      MessageDlg('Name too short.','Please enter at least 3 characters..',mtError,[mbClose],0);
+  until length(cfgName)>=3;
   saveIt:=true;
 
   if isConfigExists(cfgName) then
@@ -188,21 +180,23 @@ begin
     ReadConfigFromINI(cfgName);
 end;
 
-procedure TFormMain.butSaveFileClick(Sender: TObject);
+procedure TFormMain.butStartClick(Sender: TObject);
 begin
-  if SaveDialog.Execute then
-  begin
-    fileOutName.Text:=SaveDialog.FileName;
-    fileOutName.SetFocus;
-  end;
+  butStart.Enabled:=false;
+
+  convertSMM();
+
+  FormOutput.ShowModal;
+  FreeAndNil(FormOutput);
+  butStart.Enabled:=true;
 end;
 
-procedure TFormMain.butStartClick(Sender: TObject);
+procedure TFormMain.butAboutClick(Sender: TObject);
 var
-  frm:TFormOutput;
+  frm:TFormAbout;
 
 begin
-  frm:=convertSMM();
+  frm:=TFormAbout.Create(nil);
   frm.ShowModal;
 end;
 
@@ -261,16 +255,6 @@ begin
   addrData.Enabled:=cb_data.Checked;
   if cb_data.Checked then
     addrData.SetFocus;
-end;
-
-procedure TFormMain.fileInNameChange(Sender: TObject);
-begin
-  butStart.Enabled:=isGood2Start;
-end;
-
-procedure TFormMain.fileOutNameChange(Sender: TObject);
-begin
-  butStart.Enabled:=isGood2Start;
 end;
 
 end.

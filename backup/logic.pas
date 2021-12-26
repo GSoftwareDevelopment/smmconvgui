@@ -4,24 +4,44 @@ unit logic;
 
 interface
 uses
-  Classes, SysUtils, Forms, INIFiles, Process, StdCtrls,
+  Classes, SysUtils, Forms, INIFiles, Process, StdCtrls, Dialogs,
   main, output;
 
-function convertSMM():TFormOutput;
+function getSMMVersion():String;
+procedure convertSMM();
 procedure switchAddr(var addr: TEdit; var cb: TCheckBox);
 function isGood2Start():boolean;
 
 procedure openConfigINI();
 procedure closeConfigINI();
 
-function getConfigList():TStringList;
-function isConfigExists(cfgName:string);
+procedure getConfigList(var list:TStringList);
+function isConfigExists(cfgName:string):boolean;
 procedure ReadConfigFromINI(cfgName:string);
 procedure DeleteConfigFromINI(cfgName:string);
 procedure SaveConfig2INI(cfgName:string);
 
 const
   INI_CONFIG_FILE = 'configs.ini';
+  FILE_SMMCONV = 'smm-conv';
+  CMDPARAM_MAKECONFIG = '-MC';
+  CMDPARAM_MAKERESOURCE = '-MR';
+  CMDPARAM_REDUCE = '-reduce:';
+  CMDPARAM_REINDEX = '-reindex:';
+  CMDOPT_SFXONLY = 'sfxonly';
+  CMDOPT_TABONLY = 'tabonly';
+  CMDOPT_ALL = 'all';
+  CMDPARAM_AUDIOBUFFER='-audiobuffer:';
+  CMDPARAM_REGS='-regs:';
+  CMDPARAM_CHANNELREGS='-chnregs:';
+  CMDPARAM_ORIGIN='-org:';
+  CMDPARAM_NOTETABLE='-notetable:';
+  CMDPARAM_SFXNOTETABLE='-sfxnotetable:';
+  CMDPARAM_SFXMODETABLE='-sfxmodetable:';
+  CMDPARAM_SFXTABLE='-sfxtable:';
+  CMDPARAM_TABTABLE='-tabtable:';
+  CMDPARAM_SONGDATA='-songdata:';
+  CMDPARAM_DATA='-data:';
 
 var
   fini:TINIFile;
@@ -38,20 +58,12 @@ begin
   fini.Free;
 end;
 
-function getConfigList():TStringList;
-var
-   list:TStringList;
-
+procedure getConfigList(var list:TStringList);
 begin
-  list:=TStringList.Create();
-  try
-     fini.ReadSections(list);
-  finally
-  end;
-  result:=list;
+  fini.ReadSections(list);
 end;
 
-function isConfigExists(cfgName:string);
+function isConfigExists(cfgName:string):boolean;
 begin
   result:=fini.SectionExists(cfgName)
 end;
@@ -131,64 +143,120 @@ begin
   end;
 end;
 
-function convertSMM():TFormOutput;
+procedure prepareConvertSMMParams(var Pro:TProcess);
+begin
+  with FormMain do
+  begin
+    Pro.Parameters.Add(fileInName.Text);
+    Pro.Parameters.Add(fileOutName.Text);
+
+    if cb_makeConf.Checked then Pro.Parameters.Add(CMDPARAM_MAKECONFIG);
+    if cb_makeRes.Checked then Pro.Parameters.Add(CMDPARAM_MAKERESOURCE);
+    case grp_reduce.ItemIndex of
+      0: Pro.Parameters.Add(CMDPARAM_REDUCE+CMDOPT_SFXONLY);
+      1: Pro.Parameters.Add(CMDPARAM_REDUCE+CMDOPT_TABONLY);
+      2: Pro.Parameters.Add(CMDPARAM_REDUCE+CMDOPT_ALL);
+    end;
+    case grp_reindex.ItemIndex of
+      0: Pro.Parameters.Add(CMDPARAM_REINDEX+CMDOPT_SFXONLY);
+      1: Pro.Parameters.Add(CMDPARAM_REINDEX+CMDOPT_TABONLY);
+      2: Pro.Parameters.Add(CMDPARAM_REINDEX+CMDOPT_ALL);
+    end;
+
+    if cb_audioBuf.Checked then Pro.Parameters.Add(CMDPARAM_AUDIOBUFFER+addrAudioBuf.Text);
+    if cb_engineRegs.Checked then Pro.Parameters.Add(CMDPARAM_REGS+addrSFXRegs.Text);
+    if cb_chnRegs.Checked then Pro.Parameters.Add(CMDPARAM_CHANNELREGS+addrChnRegs.Text);
+
+    if cb_Origin.Checked then Pro.Parameters.Add(CMDPARAM_ORIGIN+addrOrigin.Text);
+    if cb_noteTab.Checked then Pro.Parameters.Add(CMDPARAM_NOTETABLE+addrNoteTab.Text);
+    if cb_sfxNotes.Checked then Pro.Parameters.Add(CMDPARAM_SFXNOTETABLE+addrSFXNotes.Text);
+    if cb_sfxModes.Checked then Pro.Parameters.Add(CMDPARAM_SFXMODETABLE+addrSFXModes.Text);
+    if cb_sfxTab.Checked then Pro.Parameters.Add(CMDPARAM_SFXTABLE+addrSFXTab.Text);
+    if cb_tabTab.Checked then Pro.Parameters.Add(CMDPARAM_TABTABLE+addrTABTab.Text);
+    if cb_songData.Checked then Pro.Parameters.Add(CMDPARAM_SONGDATA+addrSongData.Text);
+    if cb_data.Checked then Pro.Parameters.Add(CMDPARAM_DATA+addrData.Text);
+  end;
+end;
+
+function getSMMVersion():String;
 var
-  frm: TFormOutput;
   Pro: TProcess;
-  List: TStringList;
+  List:TStringList;
 
 begin
-  frm:=TFormOutput.Create(nil);
-  result:=frm;
+  result:='';
   Pro := TProcess.Create(nil);
+  Pro.Executable := FILE_SMMCONV;
+  Pro.Parameters.Add('--v');
+  Pro.Options := [poUsePipes,{ poStderrToOutPut, }poWaitOnExit, poNoConsole];
+  Pro.ShowWindow:=swoHide;
+  List:=TStringList.Create();
   try
-    with FormMain do
-    begin
-      Pro.Executable := 'smm-conv';
-      Pro.Parameters.Add(fileInName.Text);
-      Pro.Parameters.Add(fileOutName.Text);
-
-      if cb_makeConf.Checked then Pro.Parameters.Add('-MC');
-      if cb_makeRes.Checked then Pro.Parameters.Add('-MR');
-      case grp_reduce.ItemIndex of
-        0: Pro.Parameters.Add('-reduce:sfxonly');
-        1: Pro.Parameters.Add('-reduce:tabonly');
-        2: Pro.Parameters.Add('-reduce:all');
-      end;
-      case grp_reindex.ItemIndex of
-        0: Pro.Parameters.Add('-reindex:sfxonly');
-        1: Pro.Parameters.Add('-reindex:tabonly');
-        2: Pro.Parameters.Add('-reindex:all');
-      end;
-
-      if cb_audioBuf.Checked then Pro.Parameters.Add('-audiobuffer:'+addrAudioBuf.Text);
-      if cb_engineRegs.Checked then Pro.Parameters.Add('-regs:'+addrSFXRegs.Text);
-      if cb_chnRegs.Checked then Pro.Parameters.Add('-chnregs:'+addrChnRegs.Text);
-
-      if cb_Origin.Checked then Pro.Parameters.Add('-org:'+addrOrigin.Text);
-      if cb_noteTab.Checked then Pro.Parameters.Add('-notetable:'+addrNoteTab.Text);
-      if cb_sfxNotes.Checked then Pro.Parameters.Add('-sfxnotetable:'+addrSFXNotes.Text);
-      if cb_sfxModes.Checked then Pro.Parameters.Add('-sfxmodetable:'+addrSFXModes.Text);
-      if cb_sfxTab.Checked then Pro.Parameters.Add('-sfxtable:'+addrSFXTab.Text);
-      if cb_tabTab.Checked then Pro.Parameters.Add('-tabtable:'+addrTABTab.Text);
-      if cb_songData.Checked then Pro.Parameters.Add('-songdata:'+addrSongData.Text);
-      if cb_data.Checked then Pro.Parameters.Add('-data:'+addrData.Text);
-    end;
-
-    Pro.Options := [poUsePipes, poStderrToOutPut, poWaitOnExit, poNoConsole];
-    Pro.ShowWindow:=swoNone;
     Pro.Execute();
-    List:=TStringList.Create();
-    try
-       Frm.ListBox1.Items.Clear;
-       if Pro.Output<> nil then List.LoadFromStream(Pro.Output);
-       Frm.ListBox1.Items.Text := Frm.ListBox1.Items.Text  + List.Text;
-    finally
-      List.Free();
+    if Pro.Output<> nil then
+    begin
+      List.LoadFromStream(Pro.Output);
+      result:=List.Text;
+//      Frm.ListBox1.Items.Text:=Frm.ListBox1.Items.Text + List.Text;
     end;
-  finally
-    Pro.Free();
+  except
+    on E:EProcess do
+      ShowMessage(E.Message);
+    on E:Exception do  // generic handler
+      ShowMessage('Caught ' + E.ClassName + ': ' + E.Message);
   end;
+  List.Free;
+  Pro.Free;
+end;
+
+procedure convertSMM();
+var
+  Pro: TProcess;
+  List: TStringList;
+  output: TStrings;
+
+begin
+  FormOutput:=TFormOutput.Create(nil);
+  FormOutput.memo.Clear;
+
+  Pro:=TProcess.Create(nil);
+  Pro.Executable:=FILE_SMMCONV;
+  prepareConvertSMMParams(Pro);
+//  Frm.ListBox1.Items.AddStrings(Pro.Parameters.Text);
+  Pro.Options := [
+                   poUsePipes,
+//                   poStderrToOutPut,
+                   poWaitOnExit
+//                   poNewProcessGroup
+//                   poNoConsole
+                 ];
+  Pro.ShowWindow:=swoMinimize;
+
+  List:=TStringList.Create();
+  output:=FormOutput.memo.Lines;
+  try
+    Pro.Execute();
+    if Pro.Output<> nil then
+    begin
+      List.LoadFromStream(Pro.Output);
+      output.Text:=output.Text+'Output:';
+      output.Text:=output.Text+List.Text;
+    end;
+    if Pro.StdErr<> nil then
+    begin
+      List.LoadFromStream(Pro.StdErr);
+      output.Text:=output.Text+'StdErr:';
+      output.Text:=output.Text+List.Text;
+    end;
+  except
+    on E:EProcess do
+      output.Add(E.Message);
+    on E:Exception do  // generic handler
+      output.Add('Caught '+E.ClassName+': '+E.Message);
+  end;
+
+  List.Free();
+  Pro.Free();
 end;
 
 procedure switchAddr(var addr: TEdit; var cb: TCheckBox);

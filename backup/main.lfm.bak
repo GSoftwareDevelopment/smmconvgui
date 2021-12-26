@@ -1,15 +1,16 @@
 object FormMain: TFormMain
-  Left = 414
-  Height = 527
-  Top = 35
-  Width = 466
+  Left = 805
+  Height = 531
+  Top = 59
+  Width = 463
   HorzScrollBar.Visible = False
   VertScrollBar.Visible = False
   BorderStyle = bsSingle
-  Caption = 'SMM Converter v1.0'
-  ClientHeight = 527
-  ClientWidth = 466
+  Caption = 'GUI for SMM Converter'
+  ClientHeight = 531
+  ClientWidth = 463
   OnCreate = FormCreate
+  OnDestroy = FormDestroy
   Position = poWorkAreaCenter
   LCLVersion = '2.0.12.0'
   object Label1: TLabel
@@ -26,7 +27,7 @@ object FormMain: TFormMain
   object Label2: TLabel
     Left = 9
     Height = 17
-    Top = 46
+    Top = 50
     Width = 72
     Align = alCustom
     Alignment = taRightJustify
@@ -533,13 +534,12 @@ object FormMain: TFormMain
   end
   object butStart: TBitBtn
     Left = 17
-    Height = 104
+    Height = 72
     Hint = 'Begin convertion'
     Top = 416
     Width = 208
     Caption = 'START'
     Default = True
-    Enabled = False
     Font.Height = -21
     Font.Name = 'Sans'
     Font.Style = [fsBold]
@@ -609,7 +609,7 @@ object FormMain: TFormMain
   object Label3: TLabel
     Left = 9
     Height = 15
-    Top = 87
+    Top = 90
     Width = 69
     Alignment = taRightJustify
     AutoSize = False
@@ -642,6 +642,15 @@ object FormMain: TFormMain
     OnClick = butDelProfileClick
     ParentFont = False
     TabOrder = 6
+  end
+  object Button1: TButton
+    Left = 17
+    Height = 27
+    Top = 496
+    Width = 208
+    Caption = 'About'
+    OnClick = Button1Click
+    TabOrder = 13
   end
   object OpenSMMDialog: TOpenDialog
     Title = 'Open SFX Music file'
