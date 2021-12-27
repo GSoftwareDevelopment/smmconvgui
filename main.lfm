@@ -1,18 +1,18 @@
 object FormMain: TFormMain
-  Left = 410
-  Height = 531
-  Top = 118
+  Left = 579
+  Height = 529
+  Top = 56
   Width = 465
   HorzScrollBar.Visible = False
   VertScrollBar.Visible = False
   BorderStyle = bsSingle
   Caption = 'GUI for SMM Converter'
-  ClientHeight = 531
+  ClientHeight = 529
   ClientWidth = 465
   OnCreate = FormCreate
   OnDestroy = FormDestroy
   Position = poWorkAreaCenter
-  LCLVersion = '2.0.0.4'
+  LCLVersion = '2.0.12.0'
   object Label1: TLabel
     Left = 9
     Height = 19
@@ -52,15 +52,17 @@ object FormMain: TFormMain
     ChildSizing.ShrinkVertical = crsScaleChilds
     ChildSizing.Layout = cclLeftToRightThenTopToBottom
     ChildSizing.ControlsPerLine = 1
-    ClientHeight = 70
-    ClientWidth = 223
+    ClientHeight = 68
+    ClientWidth = 221
+    Color = clForm
+    ParentColor = False
     TabOrder = 5
     object cb_makeConf: TCheckBox
       Cursor = crHandPoint
       Left = 6
-      Height = 29
+      Height = 28
       Top = 6
-      Width = 211
+      Width = 209
       Caption = 'Make config file'
       Color = clDefault
       ParentColor = False
@@ -69,9 +71,9 @@ object FormMain: TFormMain
     object cb_makeRes: TCheckBox
       Cursor = crHandPoint
       Left = 6
-      Height = 29
-      Top = 35
-      Width = 211
+      Height = 28
+      Top = 34
+      Width = 209
       Caption = 'Make resource file'
       Color = clDefault
       ParentColor = False
@@ -85,8 +87,9 @@ object FormMain: TFormMain
     Top = 120
     Width = 216
     Caption = 'Addresses'
-    ClientHeight = 262
-    ClientWidth = 214
+    ClientHeight = 260
+    ClientWidth = 212
+    Color = clForm
     ParentColor = False
     TabOrder = 8
     object cb_Origin: TCheckBox
@@ -366,8 +369,9 @@ object FormMain: TFormMain
     ChildSizing.ShrinkVertical = crsScaleChilds
     ChildSizing.Layout = cclTopToBottomThenLeftToRight
     ChildSizing.ControlsPerLine = 2
-    ClientHeight = 62
-    ClientWidth = 219
+    ClientHeight = 60
+    ClientWidth = 217
+    Color = clForm
     ColumnLayout = clVerticalThenHorizontal
     Columns = 2
     ItemIndex = 3
@@ -377,6 +381,7 @@ object FormMain: TFormMain
       'All'
       'None'
     )
+    ParentColor = False
     TabOrder = 6
   end
   object grp_regs: TGroupBox
@@ -385,8 +390,10 @@ object FormMain: TFormMain
     Top = 408
     Width = 217
     Caption = 'Registers && buffers'
-    ClientHeight = 98
-    ClientWidth = 215
+    ClientHeight = 96
+    ClientWidth = 213
+    Color = clForm
+    ParentColor = False
     TabOrder = 9
     object cb_audioBuf: TCheckBox
       Cursor = crHandPoint
@@ -501,6 +508,7 @@ object FormMain: TFormMain
     Width = 208
     Caption = 'START'
     Default = True
+    Enabled = False
     Font.Height = -21
     Font.Name = 'Sans'
     Font.Style = [fsBold]
@@ -526,8 +534,9 @@ object FormMain: TFormMain
     ChildSizing.ShrinkVertical = crsScaleChilds
     ChildSizing.Layout = cclTopToBottomThenLeftToRight
     ChildSizing.ControlsPerLine = 2
-    ClientHeight = 62
-    ClientWidth = 218
+    ClientHeight = 60
+    ClientWidth = 216
+    Color = clForm
     ColumnLayout = clVerticalThenHorizontal
     Columns = 2
     ItemIndex = 3
@@ -537,6 +546,7 @@ object FormMain: TFormMain
       'All'
       'None'
     )
+    ParentColor = False
     TabOrder = 7
   end
   object ConfigList: TComboBox
@@ -552,7 +562,7 @@ object FormMain: TFormMain
     Font.Name = 'Segoe UI'
     Font.Pitch = fpVariable
     Font.Quality = fqDraft
-    ItemHeight = 0
+    ItemHeight = 21
     OnSelect = ConfigListSelect
     ParentFont = False
     Sorted = True
@@ -560,8 +570,8 @@ object FormMain: TFormMain
   end
   object Label3: TLabel
     Left = 9
-    Height = 15
-    Top = 90
+    Height = 22
+    Top = 83
     Width = 70
     Alignment = taRightJustify
     AutoSize = False
@@ -617,7 +627,14 @@ object FormMain: TFormMain
     NumGlyphs = 1
     Flat = True
     AutoSize = False
+    Font.CharSet = EASTEUROPE_CHARSET
+    Font.Color = clBlack
+    Font.Height = -16
+    Font.Name = 'Segoe UI'
+    Font.Pitch = fpVariable
+    Font.Quality = fqDraft
     MaxLength = 0
+    ParentFont = False
     TabOrder = 0
     OnChange = fileInNameChange
   end
@@ -635,7 +652,14 @@ object FormMain: TFormMain
     NumGlyphs = 1
     Flat = True
     AutoSize = False
+    Font.CharSet = EASTEUROPE_CHARSET
+    Font.Color = clBlack
+    Font.Height = -16
+    Font.Name = 'Segoe UI'
+    Font.Pitch = fpVariable
+    Font.Quality = fqDraft
     MaxLength = 0
+    ParentFont = False
     TabOrder = 2
     OnChange = fileOutNameChange
   end
