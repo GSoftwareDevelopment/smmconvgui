@@ -1,7 +1,7 @@
 object FormMain: TFormMain
-  Left = 450
+  Left = 423
   Height = 509
-  Top = 150
+  Top = 94
   Width = 466
   HorzScrollBar.Visible = False
   VertScrollBar.Visible = False
@@ -20,12 +20,12 @@ object FormMain: TFormMain
     Width = 448
     HelpType = htKeyword
     Caption = 'Profile'
-    ClientHeight = 42
-    ClientWidth = 446
+    ClientHeight = 40
+    ClientWidth = 444
     TabOrder = 2
     object ProfilesList: TComboBox
       Left = 8
-      Height = 40
+      Height = 29
       Hint = 'Choice profile'
       Top = 0
       Width = 367
@@ -38,7 +38,7 @@ object FormMain: TFormMain
       Font.Name = 'Segoe UI'
       Font.Pitch = fpVariable
       Font.Quality = fqDraft
-      ItemHeight = 0
+      ItemHeight = 21
       OnSelect = ProfilesListSelect
       ParentFont = False
       ParentShowHint = False
@@ -158,8 +158,8 @@ object FormMain: TFormMain
     object tabAPI_Optimize: TTabSheet
       HelpType = htKeyword
       Caption = 'General'
-      ClientHeight = 264
-      ClientWidth = 440
+      ClientHeight = 262
+      ClientWidth = 442
       object grp_apifiles: TCheckGroup
         Left = 8
         Height = 88
@@ -177,16 +177,16 @@ object FormMain: TFormMain
         ChildSizing.ShrinkVertical = crsScaleChilds
         ChildSizing.Layout = cclLeftToRightThenTopToBottom
         ChildSizing.ControlsPerLine = 1
-        ClientHeight = 70
-        ClientWidth = 206
+        ClientHeight = 68
+        ClientWidth = 204
         ParentBackground = False
         ParentColor = False
         TabOrder = 0
         object cb_makeConf: TCheckBox
           Left = 6
-          Height = 29
+          Height = 28
           Top = 6
-          Width = 194
+          Width = 192
           Caption = 'Make config file'
           Color = clDefault
           ParentColor = False
@@ -194,9 +194,9 @@ object FormMain: TFormMain
         end
         object cb_makeRes: TCheckBox
           Left = 6
-          Height = 29
-          Top = 35
-          Width = 194
+          Height = 28
+          Top = 34
+          Width = 192
           Caption = 'Make resource file'
           Color = clDefault
           ParentColor = False
@@ -218,8 +218,8 @@ object FormMain: TFormMain
         ChildSizing.ShrinkVertical = crsScaleChilds
         ChildSizing.Layout = cclTopToBottomThenLeftToRight
         ChildSizing.ControlsPerLine = 2
-        ClientHeight = 62
-        ClientWidth = 206
+        ClientHeight = 60
+        ClientWidth = 204
         ColumnLayout = clVerticalThenHorizontal
         Columns = 2
         ItemIndex = 3
@@ -248,8 +248,8 @@ object FormMain: TFormMain
         ChildSizing.ShrinkVertical = crsScaleChilds
         ChildSizing.Layout = cclTopToBottomThenLeftToRight
         ChildSizing.ControlsPerLine = 2
-        ClientHeight = 62
-        ClientWidth = 206
+        ClientHeight = 60
+        ClientWidth = 204
         ColumnLayout = clVerticalThenHorizontal
         Columns = 2
         ItemIndex = 3
@@ -267,13 +267,13 @@ object FormMain: TFormMain
     object tabAddresses: TTabSheet
       HelpType = htKeyword
       Caption = 'Addresses'
-      ClientHeight = 264
-      ClientWidth = 440
+      ClientHeight = 262
+      ClientWidth = 442
       object HeaderControl1: THeaderControl
         Left = 0
         Height = 30
         Top = 0
-        Width = 440
+        Width = 442
         DragReorder = False
         Sections = <        
           item
@@ -313,13 +313,13 @@ object FormMain: TFormMain
     object tabBuf_Regs: TTabSheet
       HelpType = htKeyword
       Caption = 'Buffer/Registers'
-      ClientHeight = 264
-      ClientWidth = 440
+      ClientHeight = 262
+      ClientWidth = 442
       object HeaderControl2: THeaderControl
         Left = 0
         Height = 30
         Top = 0
-        Width = 440
+        Width = 442
         DragReorder = False
         Sections = <        
           item
@@ -352,13 +352,13 @@ object FormMain: TFormMain
     object tabAbout: TTabSheet
       HelpType = htKeyword
       Caption = 'About'
-      ClientHeight = 264
-      ClientWidth = 440
+      ClientHeight = 262
+      ClientWidth = 442
       object Label3: TLabel
         Left = 0
         Height = 62
         Top = 0
-        Width = 440
+        Width = 442
         Align = alTop
         Alignment = taCenter
         AutoSize = False
@@ -371,9 +371,9 @@ object FormMain: TFormMain
       end
       object memAbout: TMemo
         Left = 10
-        Height = 138
+        Height = 136
         Top = 62
-        Width = 420
+        Width = 422
         Align = alClient
         Alignment = taCenter
         BorderSpacing.Left = 10
@@ -390,12 +390,12 @@ object FormMain: TFormMain
       object Panel1: TPanel
         Left = 10
         Height = 30
-        Top = 224
-        Width = 420
+        Top = 222
+        Width = 422
         Align = alBottom
         BorderSpacing.Around = 10
         ClientHeight = 30
-        ClientWidth = 420
+        ClientWidth = 422
         TabOrder = 1
         object butOpenProjectURL: TButton
           Left = 1
@@ -413,18 +413,20 @@ object FormMain: TFormMain
           Left = 201
           Height = 28
           Top = 1
-          Width = 218
+          Width = 220
           Align = alClient
           Caption = 'Help'
           OnClick = butOpenHelpURLClick
+          ParentShowHint = False
+          ShowHint = True
           TabOrder = 1
         end
       end
       object Label4: TLabel
         Left = 0
         Height = 14
-        Top = 200
-        Width = 440
+        Top = 198
+        Width = 442
         Align = alBottom
         Alignment = taCenter
         Caption = 'Created by GSD 2021'
@@ -442,7 +444,6 @@ object FormMain: TFormMain
     Top = 3
     Width = 368
     HelpType = htKeyword
-    FileName = '/home/pebe/Atari/HDD/TATQOO - KRET.SMM'
     DialogOptions = [ofPathMustExist, ofFileMustExist, ofEnableSizing, ofViewDetail]
     Filter = 'SMM Files|*.SMM;*.smm|All Files|*.*'
     FilterIndex = 0
@@ -462,7 +463,6 @@ object FormMain: TFormMain
     ParentShowHint = False
     ShowHint = True
     TabOrder = 0
-    Text = '/home/pebe/Atari/HDD/TATQOO - KRET.SMM'
   end
   object Label2: TLabel
     Left = 8
@@ -515,16 +515,19 @@ object FormMain: TFormMain
     OnEditingDone = OutputNameChange
   end
   object butStart: TSpeedButton
-    Left = 10
-    Height = 57
-    Top = 447
-    Width = 446
-    HelpType = htKeyword
+    Left = 8
+    Height = 61
+    Top = 440
+    Width = 452
     Caption = 'START'
+    Font.CharSet = EASTEUROPE_CHARSET
     Font.Height = -19
-    Font.Name = 'Sans'
+    Font.Pitch = fpVariable
+    Font.Quality = fqDraft
     Font.Style = [fsBold]
     OnClick = butStartClick
+    ShowHint = True
     ParentFont = False
+    ParentShowHint = False
   end
 end

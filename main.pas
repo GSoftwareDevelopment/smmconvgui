@@ -6,7 +6,7 @@ interface
 
 uses
   Classes, SysUtils, Forms, Controls, Graphics, Dialogs, StdCtrls,
-  ExtCtrls, Buttons, ComCtrls, EditBtn, LazHelpHTML, SynHighlighterHTML, LCLIntf;
+  ExtCtrls, Buttons, ComCtrls, EditBtn, LCLIntf;
 
 type
 
@@ -28,6 +28,7 @@ type
       butDelProfile: TSpeedButton;
 
     Options: TPageControl;
+    butStart: TSpeedButton;
 
       tabAPI_Optimize: TTabSheet;
         grp_apifiles: TCheckGroup;
@@ -47,14 +48,13 @@ type
         Label3: TLabel;
         memAbout: TMemo;
 
-    butStart: TSpeedButton;
 
 
     procedure butDelProfileClick(Sender: TObject);
     procedure butAddProfileClick(Sender: TObject);
-    procedure butStartClick(Sender: TObject);
     procedure butOpenProjectURLClick(Sender: TObject);
     procedure butOpenHelpURLClick(Sender: TObject);
+    procedure butStartClick(Sender: TObject);
     procedure OutputNameChange(Sender: TObject);
     procedure ProfilesListSelect(Sender: TObject);
     procedure FormCreate(Sender: TObject);
@@ -281,6 +281,20 @@ end;
 //
 //
 
+//
+// About URLs buttons
+//
+
+procedure TFormMain.butOpenProjectURLClick(Sender: TObject);
+begin
+  openURL(PROJECT_URL);
+end;
+
+procedure TFormMain.butOpenHelpURLClick(Sender: TObject);
+begin
+  openURL(HELP_URL);
+end;
+
 procedure TFormMain.butStartClick(Sender: TObject);
 var
   outputFileName:String;
@@ -315,20 +329,6 @@ begin
   FormOutput.ShowModal;
   FreeAndNil(FormOutput);
   butStart.Enabled:=true;
-end;
-
-//
-// About URLs buttons
-//
-
-procedure TFormMain.butOpenProjectURLClick(Sender: TObject);
-begin
-  openURL(PROJECT_URL);
-end;
-
-procedure TFormMain.butOpenHelpURLClick(Sender: TObject);
-begin
-  openURL(HELP_URL);
 end;
 
 //

@@ -35,8 +35,8 @@ const
   CMDOPT_TABONLY = 'tabonly';
   CMDOPT_ALL = 'all';
 
-  PROJECT_URL = 'https://github.com/GSoftwareDevelopment/smmconvgui';
-  HELP_URL = 'https://gsoftwaredevelopment.github.io/smmconvgui/';
+  PROJECT_URL = 'https://gsoftwaredevelopment.github.io/smmconvgui';
+  HELP_URL = 'https://gsoftwaredevelopment.github.io/smmconvgui/help.html';
 
   addrs_params:array[0..10] of string = (
     '-org:','-notetable:','-sfxmodetable:','-sfxnotetable:','-sfxtable','-tabtable','-songdata:','-data:',
