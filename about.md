@@ -3,6 +3,4 @@ title: GUI for SMM Converter
 description: O programie
 ---
 
-# GDI for SMM Converter
-
-Program jest graficznym interfejsem (nakładką) na program **SMM Converter**.
+Program powstał z użyciem środowiska programistycznego Lazarus w języku Free Pascal. Umożliwia to dość proste przeniesienie programu pod inny system operacyjny.
