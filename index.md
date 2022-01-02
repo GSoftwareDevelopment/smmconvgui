@@ -11,7 +11,7 @@ Program jest graficznym interfejsem (nakładką) na program SMM Converter.
 
 Wszystkie opcje programu są zawarte w jednym oknie
 
-![](imgs/main-window.png)
+![](./imgs/main-window.png)
 
 Można go podzielić na cztery grupy:
 
@@ -50,13 +50,13 @@ W profilu zapisywane są wszystkie definiowane w konfiguracji parametry.
 
 Aby utworzyć nowy profil, należy go uprzednio skonfigurować. Następnie klikając w **przycisk plus** (umieszczony po prawej stronie listy wyboru profili) należy podać nazwę tworzonego profilu.
 
-![](imgs/profile-add-update.png)
+![](./imgs/profile-add-update.png)
 
 #### Aktualizacja profilu
 
 Aktualizacji można dokonać podając istniejącą nazwę profilu przy jego tworzeniu. Użytkownik zostanie poinformowany monitem "Profil o podanej nazwie istnieje" i pytaniu, "Czy chcesz go zaktualizować?"
 
-![](imgs/profile-update.png)
+![](./imgs/profile-update.png)
 
 Odpowiadając **Tak**, dokonasz aktualizacji konfiguracji profilu.
 
@@ -66,7 +66,7 @@ Odpowiadając **Tak**, dokonasz aktualizacji konfiguracji profilu.
 
 Usunięcie proilu należy zacząć od jego wybrania z **listy wyboru profili**, poczym należy nacisnąć **przycisk minus**. Pojawi się monit z pytaniem "Czy usunąć profil?".
 
-![](imgs/profile-delete.png)
+![](./imgs/profile-delete.png)
 
 Odpowiadając twierdząco, usuniesz go.
 
@@ -82,13 +82,13 @@ W tej części zawarta jest jeszcze zakładka **About**, czyli informacje o prog
 
 ### General
 
-![](imgs/config-general.png)
+![](./imgs/config-general.png)
 
 ### SFX API files
 
 Grupa pozwalająca ustalić, jakie pliki dla **SFX API** mają być wygenerowane przez konwerter.
 
-- **Make config file** - to plik zawierający definicje stałych wykorzystywanych przez **SFX-Engin**e oraz **SFX API** dla **MAD Pascala** 
+- **Make config file** - to plik zawierający definicje stałych wykorzystywanych przez **SFX-Engin**e oraz **SFX API** dla **MAD Pascala**
 - **Make resource file** - plik z definicjami zasobów dla **MAD Pascala**
 
 #### Reduce
@@ -101,13 +101,13 @@ Elementy które mogą być poddane redukcji to definicje **SFXów** oraz **TABó
 
 W tej grupie można określić, które dane będą poddane **reindeksacji**.
 
-**Reindeksacja** pozwala oszczędzić miejsce w pamieci, poprzez kompaktowe umieszczenie elementów. Wyeliminowanie luk (ang. Gaps) w tablicach pozwala je skrócić. 
+**Reindeksacja** pozwala oszczędzić miejsce w pamieci, poprzez kompaktowe umieszczenie elementów. Wyeliminowanie luk (ang. Gaps) w tablicach pozwala je skrócić.
 
 Elementy jakie mogą być poddane reindeksacji to definicje **SFXów** oraz **TABów**.
 
 ### Addresses
 
-![](imgs/config-addresses.png)
+![](./imgs/config-addresses.png)
 
 Zakładka pozwala określić, rozmieszczenie bloków danych w pamięci Atari.
 
@@ -132,7 +132,7 @@ Generowany plik, będzie umieszczony w katalogu, ktory jest określony w **Outpu
 
 ### Buffer/Registers
 
-![](imgs/config-buf-regs.png)
+![](./imgs/config-buf-regs.png)
 
 Silnik SFX-Engine pozwala na ustalenie adresów dla rejestrów roboczych (**Engine regs**) rejestrów kanałów (**Channels regs**) oraz bufora rejestrów POKEY w skrócie nazwanego buforem audio (**Audio Buffer**)
 
@@ -160,11 +160,11 @@ Przycisk **START** pozwala rozpocząć proces konwersji. Uruchamia on program `s
 
 Brak ustalenia **pliku źródłowego**, poskutkuje wyświetleniem stosownego monitu:
 
-![](imgs/start-no-source-file.png)
+![](./imgs/start-no-source-file.png)
 
 W przypadku, gdy nie zostanie określony **plik wyjściowy**, monit ten będzie następujący:
 
-![](imgs/start-no-primary-file.png)
+![](./imgs/start-no-primary-file.png)
 
 Znaczy on tyle, że wszystkie pliki, jakie będzie generował konwerter, będą umieszczone w katalogu pliku źródłowego.
 
@@ -172,5 +172,4 @@ Znaczy on tyle, że wszystkie pliki, jakie będzie generował konwerter, będą 
 
 Po skończonej pracy programu `smm-conv`, wyświetlane jest okno dialogowe z informacjami jakie konwerter zwrócił.
 
-![](imgs/start-out-window.png)
-
+![](./imgs/start-out-window.png)
