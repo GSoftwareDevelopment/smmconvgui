@@ -2,7 +2,9 @@
 title: GUI for SMM Converter
 category: GUI tools
 author: GSD
+description: Interfejs graficzny dla programu `SMM-CONV` - plik pomocy
 ---
+
 # GDI for SMM Converter
 
 Program jest graficznym interfejsem (nakładką) na program **SMM Converter**.
