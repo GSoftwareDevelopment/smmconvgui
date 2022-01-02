@@ -14,7 +14,6 @@ uses
 begin
   RequireDerivedFormResource:=True;
   Application.Title:='GUI for SMM Converter';
-  Application.Scaled:=True;
   Application.Initialize;
   Application.CreateForm(TFormMain, FormMain);
   Application.Run;

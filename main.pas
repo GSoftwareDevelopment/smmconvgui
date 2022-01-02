@@ -6,73 +6,64 @@ interface
 
 uses
   Classes, SysUtils, Forms, Controls, Graphics, Dialogs, StdCtrls,
-  ExtCtrls, Buttons, ComCtrls, EditBtn;
+  ExtCtrls, Buttons, ComCtrls, EditBtn, LazHelpHTML, SynHighlighterHTML, LCLIntf;
 
 type
 
   { TFormMain }
 
   TFormMain = class(TForm)
-    butDelProfile: TButton;
-    butStart: TBitBtn;
-    butAddProfile: TButton;
-    butAbout: TButton;
-    cb_audioBuf: TCheckBox;
-    cb_engineRegs: TCheckBox;
-    cb_chnRegs: TCheckBox;
-    cb_songData: TCheckBox;
-    cb_makeConf: TCheckBox;
-    cb_makeRes: TCheckBox;
-    cb_Origin: TCheckBox;
-    cb_noteTab: TCheckBox;
-    cb_sfxModes: TCheckBox;
-    cb_sfxNotes: TCheckBox;
-    cb_sfxTab: TCheckBox;
-    cb_tabTab: TCheckBox;
-    cb_data: TCheckBox;
-    addrAudioBuf: TEdit;
-    addrSFXRegs: TEdit;
-    addrChnRegs: TEdit;
-    addrSongData: TEdit;
-    addrOrigin: TEdit;
-    addrNoteTab: TEdit;
-    addrSFXModes: TEdit;
-    addrSFXNotes: TEdit;
-    addrSFXTab: TEdit;
-    addrTABTab: TEdit;
-    addrData: TEdit;
-    ConfigList: TComboBox;
-    FileInName: TFileNameEdit;
-    FileOutName: TFileNameEdit;
+    butOpenProjectURL: TButton;
+    butOpenHelpURL: TButton;
     Label1: TLabel;
+    Label4: TLabel;
+    Panel1: TPanel;
+    SourceName: TFileNameEdit;
     Label2: TLabel;
-    Label3: TLabel;
-    grp_reindex: TRadioGroup;
-    grp_regs: TGroupBox;
-    grp_apifiles: TCheckGroup;
-    grp_addr: TGroupBox;
-    grp_reduce: TRadioGroup;
+    OutputName: TFileNameEdit;
+
+    grpProfile: TGroupBox;
+      ProfilesList: TComboBox;
+      butAddProfile: TSpeedButton;
+      butDelProfile: TSpeedButton;
+
+    Options: TPageControl;
+
+      tabAPI_Optimize: TTabSheet;
+        grp_apifiles: TCheckGroup;
+          cb_makeConf: TCheckBox;
+          cb_makeRes: TCheckBox;
+
+          grp_reduce: TRadioGroup;
+          grp_reindex: TRadioGroup;
+
+      tabAddresses: TTabSheet;
+        HeaderControl1: THeaderControl;
+
+      tabBuf_Regs: TTabSheet;
+        HeaderControl2: THeaderControl;
+
+      tabAbout: TTabSheet;
+        Label3: TLabel;
+        memAbout: TMemo;
+
+    butStart: TSpeedButton;
+
+
     procedure butDelProfileClick(Sender: TObject);
     procedure butAddProfileClick(Sender: TObject);
     procedure butStartClick(Sender: TObject);
-    procedure butAboutClick(Sender: TObject);
-    procedure cb_audioBufChange(Sender: TObject);
-    procedure cb_chnRegsChange(Sender: TObject);
-    procedure cb_dataChange(Sender: TObject);
-    procedure cb_noteTabChange(Sender: TObject);
-    procedure cb_OriginChange(Sender: TObject);
-    procedure cb_sfxModesChange(Sender: TObject);
-    procedure cb_sfxNotesChange(Sender: TObject);
-    procedure cb_sfxTabChange(Sender: TObject);
-    procedure cb_songDataChange(Sender: TObject);
-    procedure cb_tabTabChange(Sender: TObject);
-    procedure cb_engineRegsChange(Sender: TObject);
-    procedure ConfigListSelect(Sender: TObject);
-    procedure fileInNameChange(Sender: TObject);
-    procedure fileOutNameChange(Sender: TObject);
+    procedure butOpenProjectURLClick(Sender: TObject);
+    procedure butOpenHelpURLClick(Sender: TObject);
+    procedure OutputNameChange(Sender: TObject);
+    procedure ProfilesListSelect(Sender: TObject);
     procedure FormCreate(Sender: TObject);
     procedure FormDestroy(Sender: TObject);
+
   private
+    procedure cb_addr_Click(Sender: TObject);
+    procedure fn_addr_Origin(Sender: TObject);
+    procedure fn_addr_trim(Sender: TObject);
 
   public
 
@@ -80,10 +71,13 @@ type
 
 var
   FormMain: TFormMain;
+  cb_addrs:array[0..10] of TCheckBox;
+  ed_addrs:array[0..10] of TEdit;
+  fn_addrs:array[0..7] of TEdit;
 
 implementation
 {$R *.lfm}
-uses about,output, Logic;
+uses output, Logic;
 
 { TFormMain }
 
@@ -91,10 +85,103 @@ procedure TFormMain.FormCreate(Sender: TObject);
 var
   list:TStrings;
 
+  procedure preparePagesFields();
+  const
+    topStep = 28;
+    addrs:array[0..10] of string = (
+      'Origin','Note table','MOD table','Notes table','SFXs table','TABs table','Song data','Data',
+      'Audio buffer','Engine regs','Channels regs'
+    );
+  var
+    i:byte;
+    _top:integer;
+    tabAddresses,
+    tabBuf_Regs:TTabSheet;
+
+  begin
+    tabAddresses:=FormMain.tabAddresses;
+    tabBuf_Regs:=FormMain.tabBuf_Regs;
+
+    for i:=0 to 10 do
+    begin
+      if i<=7 then
+      begin
+        _top:=35+(i*topStep);
+        cb_addrs[i]:=TCheckBox.Create(tabAddresses);
+        cb_addrs[i].Parent:=tabAddresses;
+        ed_addrs[i]:=TEdit.Create(tabAddresses);
+        ed_addrs[i].parent:=tabAddresses;
+        fn_addrs[i]:=TEdit.Create(tabAddresses);
+        fn_addrs[i].parent:=tabAddresses;
+
+        with fn_addrs[i] do
+        begin
+          name:='fn_'+IntToStr(i);
+
+          left:=210; top:=_top;
+          width:=230; height:=24;
+
+          borderStyle:=bsNone;
+          enabled:=false;
+          showHint:=true;
+
+          text:='';
+          font.Size:=12;
+          if i=0 then
+            onEditingDone:=@fn_addr_Origin
+          else
+            onEditingDone:=@fn_addr_trim;
+        end;
+      end
+      else
+      begin
+        _top:=35+((i-8)*topStep);
+        cb_addrs[i]:=TCheckBox.Create(tabBuf_Regs);
+        cb_addrs[i].Parent:=tabBuf_Regs;
+        ed_addrs[i]:=TEdit.Create(tabBuf_Regs);
+        ed_addrs[i].parent:=tabBuf_Regs;
+      end;
+      with cb_addrs[i] do
+      begin
+        name:='cb_'+IntToStr(i);
+
+        left:=2;    top:=_top;
+        width:=135; height:=21;
+
+        autoSize:=false;
+        caption:=addrs[i];
+
+        onClick:=@cb_addr_Click;
+      end;
+
+      with ed_addrs[i] do
+      begin
+        name:='ed_'+IntToStr(i);
+
+        left:=140; top:=_top;
+        width:=64; height:=24;
+
+        alignment:=taRightJustify;
+        borderStyle:=bsNone;
+        charCase:=ecUppercase;
+        enabled:=false;
+
+        text:=addrs_defaults[i];
+        font.pitch:=fpFixed;
+        font.Size:=12;
+      end;
+    end;
+  end;
+
 begin
+  prepareAbout();
+  preparePagesFields();
+
   openConfigINI();
-  list:=ConfigList.Items;
+  list:=ProfilesList.Items;
   getConfigList(list);
+  ProfilesList.ItemIndex:=list.IndexOf(DEFAULT_PROFILE_NAME);
+  Options.ActivePage:=tabAbout;
 end;
 
 procedure TFormMain.FormDestroy(Sender: TObject);
@@ -102,15 +189,18 @@ begin
   CloseConfigINI();
 end;
 
-procedure TFormMain.fileInNameChange(Sender: TObject);
+//
+//
+//
+
+procedure TFormMain.OutputNameChange(Sender: TObject);
 begin
-  butStart.Enabled:=isGood2Start;
+  fn_addrs[0].Text:=Trim(ExtractFileName(OutputName.Text));
 end;
 
-procedure TFormMain.fileOutNameChange(Sender: TObject);
-begin
-  butStart.Enabled:=isGood2Start;
-end;
+//
+// Profiles
+//
 
 procedure TFormMain.butAddProfileClick(Sender: TObject);
 Var
@@ -119,27 +209,34 @@ Var
   id:integer;
 
 begin
-  cfgName:='';
+  id:=ProfilesList.ItemIndex;
+  if id=-1 then
+    cfgName:=''
+  else
+    cfgName:=ProfilesList.Items[id];
+
   repeat
-    if not InputQuery('Add configuration','Input conig name:',false,cfgName) then
+    if not InputQuery('Add/Update profile','Profile name:',false,cfgName) then
       exit;
     cfgName:=trim(cfgName);
     if length(cfgName)<3 then
-      MessageDlg('Name too short.','Please enter at least 3 characters..',mtError,[mbClose],0);
+      MessageDlg('Name too short','Please enter at least 3 characters..',mtError,[mbClose],0);
   until length(cfgName)>=3;
   saveIt:=true;
 
   if isConfigExists(cfgName) then
     saveIt:=MessageDlg(
-      'Error','Do you want overwrite config `'+cfgName+'`',
+      'Warning',
+      'Profile `'+cfgName+'` is exist.'+sLineBreak+sLineBreak+
+      'Do you want update it?',
       mtConfirmation,[mbYes,mbNo],0)<>mrNo;
 
   if saveIt then
   begin
-    id:=configList.Items.IndexOf(cfgName);
-    if id>0 then configList.Items.Delete(id);
-    configList.Items.add(cfgName);
-    configList.ItemIndex:=configList.Items.IndexOf(cfgName);
+    id:=ProfilesList.Items.IndexOf(cfgName);
+    if id>0 then ProfilesList.Items.Delete(id);
+    ProfilesList.Items.add(cfgName);
+    ProfilesList.ItemIndex:=ProfilesList.Items.IndexOf(cfgName);
 
     SaveConfig2INI(cfgName);
   end;
@@ -151,39 +248,68 @@ var
   id:integer;
 
 begin
-  id:=configList.ItemIndex;
-  curConfig:=ConfigList.Items[id];
-  if MessageDlg('Delete configuration',
-                  'Are you sure you want delete `'+curConfig+'` configuration?',
-                  mtConfirmation, [mbYes, mbNo],0)=mrNo then exit;
+  id:=ProfilesList.ItemIndex;
+  curConfig:=ProfilesList.Items[id];
+  if MessageDlg('Delete profile',
+                'Are you sure you want delete `'+curConfig+'` profile?',
+                mtConfirmation, [mbYes, mbNo],0)=mrNo then exit;
 
   if not isConfigExists(curConfig) then
-    MessageDlg('Error','Config not exist.',mtError,[mbClose],0)
+    MessageDlg('Error','Profile not exist.',mtError,[mbClose],0)
   else
   begin
-    configList.Items.Delete(id);
+    ProfilesList.Items.Delete(id);
     DeleteConfigFromINI(curConfig);
-    configList.ItemIndex:=0;
+    ProfilesList.ItemIndex:=0;
   end;
 end;
 
-procedure TFormMain.ConfigListSelect(Sender: TObject);
+procedure TFormMain.ProfilesListSelect(Sender: TObject);
 var
   cfgName:string;
 
 begin
-  cfgName:=ConfigList.Items[configList.ItemIndex];
+  cfgName:=ProfilesList.Items[ProfilesList.ItemIndex];
 
   if not isConfigExists(cfgName) then
-    MessageDlg('Error','Config not exist.',mtError,[mbClose],0)
+    MessageDlg('Error','Profile not exist.',mtError,[mbClose],0)
   else
     ReadConfigFromINI(cfgName);
 end;
 
-procedure TFormMain.butStartClick(Sender: TObject);
-begin
-  butStart.Enabled:=false;
+//
+//
+//
 
+procedure TFormMain.butStartClick(Sender: TObject);
+var
+  outputFileName:String;
+
+begin
+  if not isGood2Start(SourceName) then
+  begin
+    MessageDlg(
+        'Information',
+        'Source file was not specified.',
+        mtInformation,
+        [mbAbort],0);
+    Exit;
+  end;
+  if not isGood2Start(OutputName) then
+  begin
+    outputFileName:=SourceName.Text+'.asm';
+    if MessageDlg(
+        'Information',
+        'Output file was not specified.'+sLineBreak+sLineBreak+
+        'Generated file will be created in the source file folder.'+sLineBreak+
+        'The primary output file will be named'+sLineBreak+
+        '"'+outputFileName+'"'+sLineBreak+sLineBreak+
+        'Do you agree whit this?',
+        mtInformation,
+        [mbYes, mbNo],0)=mrNo then Exit;
+  end;
+
+  butStart.Enabled:=false;
   convertSMM();
 
   FormOutput.ShowModal;
@@ -191,71 +317,85 @@ begin
   butStart.Enabled:=true;
 end;
 
-procedure TFormMain.butAboutClick(Sender: TObject);
+//
+// About URLs buttons
+//
+
+procedure TFormMain.butOpenProjectURLClick(Sender: TObject);
+begin
+  openURL(PROJECT_URL);
+end;
+
+procedure TFormMain.butOpenHelpURLClick(Sender: TObject);
+begin
+  openURL(HELP_URL);
+end;
+
+//
+//
+//
+
+procedure TFormMain.fn_addr_trim(Sender: TObject);
 var
-  frm:TFormAbout;
+  ed:TEdit;
+  path:string;
 
 begin
-  frm:=TFormAbout.Create(nil);
-  frm.ShowModal;
+  if (Sender is TEdit) then
+  begin
+    ed:=TEdit(Sender);
+    ed.Text:=Trim(ed.text);
+    if (length(ed.Text)>0) then
+    begin
+      path:=ExtractFileDir(OutputName.Text);
+      if length(path)>0 then
+        path:=IncludeTrailingPathDelimiter(path);
+      path:=path+ed.Text;
+      ed.Hint:=path;
+    end;
+  end;
 end;
 
-procedure TFormMain.cb_audioBufChange(Sender: TObject);
+procedure TFormMain.cb_addr_Click(Sender: TObject);
+var
+  cb: TCheckBox;
+  id: integer;
 begin
-  switchAddr(addrAudioBuf,cb_audioBuf);
+  if (Sender is TCheckBox) then
+  begin
+    cb:=TCheckBox(Sender);
+    TryStrToInt(rightStr(cb.Name,length(cb.Name)-3), id);
+    with ed_addrs[id] do
+    begin
+      Enabled:=cb.Checked;
+      if changeFocus2Addr and enabled then SetFocus;
+    end;
+    if id<=7 then
+      fn_addrs[id].Enabled:=cb.Checked;
+  end;
 end;
 
-procedure TFormMain.cb_chnRegsChange(Sender: TObject);
+procedure TFormMain.fn_addr_Origin(Sender: TObject);
+var
+  ed:TEdit;
+  path:string;
+
 begin
-  switchAddr(addrChnRegs,cb_chnRegs);
+  if (Sender is TEdit) then
+  begin
+    ed:=TEdit(Sender);
+    fn_addr_trim(ed);
+    if (length(ed.Text)>0) then
+    begin
+      path:=ExtractFileDir(OutputName.Text);
+      if length(path)>0 then
+        path:=IncludeTrailingPathDelimiter(path);
+      path:=path+ed.Text;
+      OutputName.Text:=path;
+    end;
+  end;
 end;
 
-procedure TFormMain.cb_OriginChange(Sender: TObject);
-begin
-  switchAddr(addrOrigin,cb_Origin);
-end;
-
-procedure TFormMain.cb_noteTabChange(Sender: TObject);
-begin
-  switchAddr(addrNoteTab,cb_noteTab);
-end;
-
-procedure TFormMain.cb_sfxModesChange(Sender: TObject);
-begin
-  switchAddr(addrSFXModes,cb_sfxModes);
-end;
-
-procedure TFormMain.cb_sfxNotesChange(Sender: TObject);
-begin
-  switchAddr(addrSFXNotes,cb_sfxNotes);
-end;
-
-procedure TFormMain.cb_sfxTabChange(Sender: TObject);
-begin
-  switchAddr(addrSFXTab,cb_sfxTab);
-end;
-
-procedure TFormMain.cb_songDataChange(Sender: TObject);
-begin
-  switchAddr(addrSongData,cb_songData);
-end;
-
-procedure TFormMain.cb_tabTabChange(Sender: TObject);
-begin
-  switchAddr(addrTABTab,cb_tabTab);
-end;
-
-procedure TFormMain.cb_engineRegsChange(Sender: TObject);
-begin
-  switchAddr(addrSFXRegs,cb_engineRegs);
-end;
-
-procedure TFormMain.cb_dataChange(Sender: TObject);
-begin
-  addrData.Enabled:=cb_data.Checked;
-  if cb_data.Checked then
-    addrData.SetFocus;
-end;
 
 end.
 

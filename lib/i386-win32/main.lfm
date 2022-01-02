@@ -1,624 +1,397 @@
 object FormMain: TFormMain
-  Left = 579
-  Height = 529
-  Top = 56
-  Width = 465
+  Left = 446
+  Height = 509
+  Top = 142
+  Width = 466
   HorzScrollBar.Visible = False
   VertScrollBar.Visible = False
   BorderStyle = bsSingle
   Caption = 'GUI for SMM Converter'
-  ClientHeight = 529
-  ClientWidth = 465
+  ClientHeight = 509
+  ClientWidth = 466
   OnCreate = FormCreate
   OnDestroy = FormDestroy
   Position = poWorkAreaCenter
-  LCLVersion = '2.0.12.0'
-  object Label1: TLabel
-    Left = 9
-    Height = 19
-    Top = 11
-    Width = 71
-    Alignment = taRightJustify
-    AutoSize = False
-    Caption = 'Music File:'
-    Layout = tlCenter
-    ParentColor = False
-  end
-  object Label2: TLabel
-    Left = 9
-    Height = 17
-    Top = 50
-    Width = 70
-    Align = alCustom
-    Alignment = taRightJustify
-    AutoSize = False
-    Caption = 'Out file:'
-    Layout = tlBottom
-    ParentColor = False
-  end
-  object grp_apifiles: TCheckGroup
-    Left = 8
-    Height = 88
-    Top = 120
-    Width = 225
-    Align = alCustom
-    AutoFill = True
-    Caption = 'SFX API files'
-    ChildSizing.LeftRightSpacing = 6
-    ChildSizing.TopBottomSpacing = 6
-    ChildSizing.EnlargeHorizontal = crsHomogenousChildResize
-    ChildSizing.EnlargeVertical = crsHomogenousChildResize
-    ChildSizing.ShrinkHorizontal = crsScaleChilds
-    ChildSizing.ShrinkVertical = crsScaleChilds
-    ChildSizing.Layout = cclLeftToRightThenTopToBottom
-    ChildSizing.ControlsPerLine = 1
-    ClientHeight = 68
-    ClientWidth = 221
-    Color = clForm
-    ParentColor = False
-    TabOrder = 5
-    object cb_makeConf: TCheckBox
-      Cursor = crHandPoint
-      Left = 6
-      Height = 28
-      Top = 6
-      Width = 209
-      Caption = 'Make config file'
-      Color = clDefault
-      ParentColor = False
-      TabOrder = 0
-    end
-    object cb_makeRes: TCheckBox
-      Cursor = crHandPoint
-      Left = 6
-      Height = 28
-      Top = 34
-      Width = 209
-      Caption = 'Make resource file'
-      Color = clDefault
-      ParentColor = False
-      TabOrder = 1
-    end
-  end
-  object grp_addr: TGroupBox
-    Cursor = crHandPoint
-    Left = 241
-    Height = 280
-    Top = 120
-    Width = 216
-    Caption = 'Addresses'
-    ClientHeight = 260
-    ClientWidth = 212
-    Color = clForm
-    ParentColor = False
-    TabOrder = 8
-    object cb_Origin: TCheckBox
-      Cursor = crHandPoint
-      Left = 8
-      Height = 21
-      Top = 7
-      Width = 136
-      AutoSize = False
-      Caption = 'Origin'
-      Color = clDefault
-      OnChange = cb_OriginChange
-      ParentColor = False
-      TabOrder = 0
-    end
-    object cb_noteTab: TCheckBox
-      Cursor = crHandPoint
-      Left = 8
-      Height = 21
-      Top = 39
-      Width = 137
-      AutoSize = False
-      Caption = 'Note table'
-      Color = clDefault
-      OnChange = cb_noteTabChange
-      ParentColor = False
-      TabOrder = 1
-    end
-    object cb_sfxModes: TCheckBox
-      Cursor = crHandPoint
-      Left = 8
-      Height = 21
-      Top = 70
-      Width = 137
-      AutoSize = False
-      Caption = 'SFXs modes'
-      Color = clDefault
-      OnChange = cb_sfxModesChange
-      ParentColor = False
-      TabOrder = 2
-    end
-    object cb_sfxNotes: TCheckBox
-      Cursor = crHandPoint
-      Left = 8
-      Height = 21
-      Top = 102
-      Width = 139
-      AutoSize = False
-      Caption = 'SFXs notes'
-      Color = clDefault
-      OnChange = cb_sfxNotesChange
-      ParentColor = False
-      TabOrder = 3
-    end
-    object cb_sfxTab: TCheckBox
-      Cursor = crHandPoint
-      Left = 8
-      Height = 21
-      Top = 135
-      Width = 136
-      AutoSize = False
-      Caption = 'SFXs table'
-      Color = clDefault
-      OnChange = cb_sfxTabChange
-      ParentColor = False
-      TabOrder = 4
-    end
-    object cb_tabTab: TCheckBox
-      Cursor = crHandPoint
-      Left = 8
-      Height = 21
-      Top = 166
-      Width = 136
-      AutoSize = False
-      Caption = 'TABs table'
-      Color = clDefault
-      OnChange = cb_tabTabChange
-      ParentColor = False
-      TabOrder = 5
-    end
-    object cb_data: TCheckBox
-      Cursor = crHandPoint
-      Left = 8
-      Height = 21
-      Top = 234
-      Width = 136
-      AutoSize = False
-      Caption = 'Data'
-      Color = clDefault
-      OnChange = cb_dataChange
-      ParentColor = False
-      TabOrder = 7
-    end
-    object addrOrigin: TEdit
-      Left = 144
-      Height = 24
-      Top = 5
-      Width = 64
-      Alignment = taRightJustify
-      AutoSize = False
-      BorderStyle = bsNone
-      CharCase = ecUppercase
-      Enabled = False
-      Font.CharSet = EASTEUROPE_CHARSET
-      Font.Color = clBlack
-      Font.Height = -16
-      Font.Name = 'Segoe UI'
-      Font.Pitch = fpVariable
-      Font.Quality = fqDraft
-      MaxLength = 6
-      ParentFont = False
-      TabOrder = 8
-      Text = '$A000'
-    end
-    object addrNoteTab: TEdit
-      Left = 144
-      Height = 24
-      Top = 37
-      Width = 64
-      Alignment = taRightJustify
-      AutoSize = False
-      BorderStyle = bsNone
-      CharCase = ecUppercase
-      Enabled = False
-      Font.CharSet = EASTEUROPE_CHARSET
-      Font.Color = clBlack
-      Font.Height = -16
-      Font.Name = 'Segoe UI'
-      Font.Pitch = fpVariable
-      Font.Quality = fqDraft
-      MaxLength = 6
-      ParentFont = False
-      TabOrder = 9
-    end
-    object addrSFXModes: TEdit
-      Left = 144
-      Height = 24
-      Top = 68
-      Width = 64
-      Alignment = taRightJustify
-      AutoSize = False
-      BorderStyle = bsNone
-      CharCase = ecUppercase
-      Enabled = False
-      Font.CharSet = EASTEUROPE_CHARSET
-      Font.Color = clBlack
-      Font.Height = -16
-      Font.Name = 'Segoe UI'
-      Font.Pitch = fpVariable
-      Font.Quality = fqDraft
-      MaxLength = 6
-      ParentFont = False
-      TabOrder = 10
-    end
-    object addrSFXNotes: TEdit
-      Left = 144
-      Height = 24
-      Top = 100
-      Width = 64
-      Alignment = taRightJustify
-      AutoSize = False
-      BorderStyle = bsNone
-      CharCase = ecUppercase
-      Enabled = False
-      Font.CharSet = EASTEUROPE_CHARSET
-      Font.Color = clBlack
-      Font.Height = -16
-      Font.Name = 'Segoe UI'
-      Font.Pitch = fpVariable
-      Font.Quality = fqDraft
-      MaxLength = 6
-      ParentFont = False
-      TabOrder = 11
-    end
-    object addrSFXTab: TEdit
-      Left = 144
-      Height = 24
-      Top = 132
-      Width = 64
-      Alignment = taRightJustify
-      AutoSize = False
-      BorderStyle = bsNone
-      CharCase = ecUppercase
-      Enabled = False
-      Font.CharSet = EASTEUROPE_CHARSET
-      Font.Color = clBlack
-      Font.Height = -16
-      Font.Name = 'Segoe UI'
-      Font.Pitch = fpVariable
-      Font.Quality = fqDraft
-      MaxLength = 6
-      ParentFont = False
-      TabOrder = 12
-    end
-    object addrTABTab: TEdit
-      Left = 144
-      Height = 24
-      Top = 164
-      Width = 64
-      Alignment = taRightJustify
-      AutoSize = False
-      BorderStyle = bsNone
-      CharCase = ecUppercase
-      Enabled = False
-      Font.CharSet = EASTEUROPE_CHARSET
-      Font.Color = clBlack
-      Font.Height = -16
-      Font.Name = 'Segoe UI'
-      Font.Pitch = fpVariable
-      Font.Quality = fqDraft
-      MaxLength = 6
-      ParentFont = False
-      TabOrder = 13
-    end
-    object addrData: TEdit
-      Left = 144
-      Height = 24
-      Top = 232
-      Width = 64
-      Alignment = taRightJustify
-      AutoSize = False
-      BorderStyle = bsNone
-      CharCase = ecUppercase
-      Enabled = False
-      Font.CharSet = EASTEUROPE_CHARSET
-      Font.Color = clBlack
-      Font.Height = -16
-      Font.Name = 'Segoe UI'
-      Font.Pitch = fpVariable
-      Font.Quality = fqDraft
-      MaxLength = 6
-      ParentFont = False
-      TabOrder = 15
-    end
-    object cb_songData: TCheckBox
-      Left = 8
-      Height = 21
-      Top = 200
-      Width = 137
-      AutoSize = False
-      Caption = 'Song data'
-      OnChange = cb_songDataChange
-      TabOrder = 6
-    end
-    object addrSongData: TEdit
-      Left = 144
-      Height = 24
-      Top = 198
-      Width = 64
-      Alignment = taRightJustify
-      AutoSize = False
-      BorderStyle = bsNone
-      CharCase = ecUppercase
-      Enabled = False
-      Font.CharSet = EASTEUROPE_CHARSET
-      Font.Color = clBlack
-      Font.Height = -16
-      Font.Name = 'Segoe UI'
-      Font.Pitch = fpVariable
-      Font.Quality = fqDraft
-      MaxLength = 6
-      ParentFont = False
-      TabOrder = 14
-    end
-  end
-  object grp_reduce: TRadioGroup
+  LCLVersion = '2.2.0.2'
+  object grpProfile: TGroupBox
     Left = 10
-    Height = 80
-    Top = 224
-    Width = 221
-    AutoFill = True
-    Caption = 'Reduce'
-    ChildSizing.LeftRightSpacing = 6
-    ChildSizing.EnlargeHorizontal = crsHomogenousChildResize
-    ChildSizing.EnlargeVertical = crsHomogenousChildResize
-    ChildSizing.ShrinkHorizontal = crsScaleChilds
-    ChildSizing.ShrinkVertical = crsScaleChilds
-    ChildSizing.Layout = cclTopToBottomThenLeftToRight
-    ChildSizing.ControlsPerLine = 2
-    ClientHeight = 60
-    ClientWidth = 217
-    Color = clForm
-    ColumnLayout = clVerticalThenHorizontal
-    Columns = 2
-    ItemIndex = 3
-    Items.Strings = (
-      'SFXs only'
-      'TABs only'
-      'All'
-      'None'
-    )
-    ParentColor = False
-    TabOrder = 6
-  end
-  object grp_regs: TGroupBox
-    Left = 241
-    Height = 116
-    Top = 408
-    Width = 217
-    Caption = 'Registers && buffers'
-    ClientHeight = 96
-    ClientWidth = 213
-    Color = clForm
-    ParentColor = False
-    TabOrder = 9
-    object cb_audioBuf: TCheckBox
-      Cursor = crHandPoint
+    Height = 60
+    Top = 80
+    Width = 448
+    Caption = 'Profile'
+    ClientHeight = 42
+    ClientWidth = 446
+    TabOrder = 0
+    object ProfilesList: TComboBox
       Left = 8
-      Height = 21
-      Top = 7
-      Width = 136
+      Height = 40
+      Hint = 'Choice profile'
+      Top = 0
+      Width = 367
+      AutoDropDown = True
       AutoSize = False
-      Caption = 'Audio buffer'
-      Color = clDefault
-      OnChange = cb_audioBufChange
-      ParentColor = False
+      BorderStyle = bsSingle
+      Font.CharSet = EASTEUROPE_CHARSET
+      Font.Color = clBlack
+      Font.Height = -16
+      Font.Name = 'Segoe UI'
+      Font.Pitch = fpVariable
+      Font.Quality = fqDraft
+      ItemHeight = 0
+      OnSelect = ProfilesListSelect
+      ParentFont = False
+      ParentShowHint = False
+      ShowHint = True
+      Sorted = True
+      Style = csDropDownList
       TabOrder = 0
     end
-    object cb_engineRegs: TCheckBox
-      Cursor = crHandPoint
-      Left = 8
-      Height = 21
-      Top = 39
-      Width = 136
-      AutoSize = False
-      Caption = 'Engine regs'
-      Color = clDefault
-      OnChange = cb_engineRegsChange
-      ParentColor = False
-      TabOrder = 1
-      TabStop = False
+    object butAddProfile: TSpeedButton
+      Left = 384
+      Height = 22
+      Hint = 'Create profile from current configuration.'#10'Update current profile.'
+      Top = 7
+      Width = 23
+      Flat = True
+      Glyph.Data = {
+        36040000424D3604000000000000360000002800000010000000100000000100
+        2000000000000004000064000000640000000000000000000000FFFFFF00FFFF
+        FF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFF
+        FF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFF
+        FF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFF
+        FF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFF
+        FF00FFFFFF00FFFFFF00FFFFFC00FFFFF7008A6245FF8A6245FF8A6245FF8A62
+        45FFFFFFF700FFFFFC00FDFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFF
+        FF00FFFFFF00FFFFFF00FFFFFB00FFFFF2008A6245FFE8CDB8FFE8CDB8FF8A62
+        45FFFFFFF200FFFFFB00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFF
+        FF00FFFFFC00FFFFFB00FFFFF500FFFFED008A6245FFE8CDB8FFE8CDB8FF8A62
+        45FFFFFFEB00FFFFF500FFFFFB00FFFFFC00FFFFFF00FFFFFF00FFFFFF00FFFF
+        FF00FFFFF800FFFFF200FFFFED00FFFFE6008A6245FFE8CDB8FFE8CDB8FF8A62
+        45FFFFFFE600FFFFED00FFFFF200FFFFF700FFFFFF00FFFFFF00FFFFFF00FFFF
+        FF008A6245FF8A6245FF8A6245FF8A6245FF8A6245FFE8CDB8FFE8CDB8FF8A62
+        45FF8A6245FF8A6245FF8A6245FF8A6245FFFFFFFF00FFFFFF00FFFFFF00FFFF
+        FF008A6245FFE8CDB8FFE8CDB8FFE8CDB8FFE8CDB8FFE8CDB8FFE8CDB8FFE8CD
+        B8FFE8CDB8FFE8CDB8FFE8CDB8FF8A6245FFFFFFFF00FFFFFF00FFFFFF00FFFF
+        FF008A6245FFE8CDB8FFE8CDB8FFE8CDB8FFE8CDB8FFE8CDB8FFE8CDB8FFE8CD
+        B8FFE8CDB8FFE8CDB8FFE8CDB8FF8A6245FFFFFFFF00FFFFFF00FFFFFF00FFFF
+        FF008A6245FF8A6245FF8A6245FF8A6245FF8A6245FFE8CDB8FFE8CDB8FF8A62
+        45FF8A6245FF8A6245FF8A6245FF8A6245FFFFFFFF00FFFFFF00FFFFFF00FFFF
+        FF00FFFFF700FFFFF200FFFFEB00FFFFE6008A6245FFE8CDB8FFE8CDB8FF8A62
+        45FFFFFFE600FFFFEB00FFFFF100FFFFF700FFFFFF00FFFFFF00FFFFFF00FFFF
+        FF00FFFFFC00FFFFFB00FFFFF500FFFFED008A6245FFE8CDB8FFE8CDB8FF8A62
+        45FFFFFFEB00FFFFF500FFFFF900FFFFFC00FFFFFF00FFFFFF00FFFFFF00FFFF
+        FF00FFFFFF00FFFFFF00FFFFFB00FFFFF2008A6245FFE8CDB8FFE8CDB8FF8A62
+        45FFFFFFF200FFFFFA00FFFFFF00FFFFFE00FFFFFF00FFFFFF00FFFFFF00FFFF
+        FF00FFFFFF00FFFFFF00FFFFFC00FFFFF7008A6245FF8A6245FF8A6245FF8A62
+        45FFFFFFF700FFFFFC00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFF
+        FF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFF
+        FF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFF
+        FF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFF
+        FF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00
+      }
+      OnClick = butAddProfileClick
+      ShowHint = True
+      ParentShowHint = False
     end
-    object cb_chnRegs: TCheckBox
-      Cursor = crHandPoint
-      Left = 8
-      Height = 21
-      Top = 70
-      Width = 136
-      AutoSize = False
-      Caption = 'Channels regs'
-      Color = clDefault
-      OnChange = cb_chnRegsChange
-      ParentColor = False
-      TabOrder = 2
-      TabStop = False
-    end
-    object addrAudioBuf: TEdit
-      Left = 144
-      Height = 24
-      Top = 5
-      Width = 64
-      Alignment = taRightJustify
-      AutoSize = False
-      BorderStyle = bsNone
-      CharCase = ecUppercase
-      Enabled = False
-      Font.CharSet = EASTEUROPE_CHARSET
-      Font.Color = clBlack
-      Font.Height = -16
-      Font.Name = 'Segoe UI'
-      Font.Pitch = fpVariable
-      Font.Quality = fqDraft
-      MaxLength = 6
-      ParentFont = False
-      TabOrder = 3
-      Text = '$E8'
-    end
-    object addrSFXRegs: TEdit
-      Left = 144
-      Height = 24
-      Top = 37
-      Width = 64
-      Alignment = taRightJustify
-      AutoSize = False
-      BorderStyle = bsNone
-      CharCase = ecUppercase
-      Enabled = False
-      Font.CharSet = EASTEUROPE_CHARSET
-      Font.Color = clBlack
-      Font.Height = -16
-      Font.Name = 'Segoe UI'
-      Font.Pitch = fpVariable
-      Font.Quality = fqDraft
-      MaxLength = 6
-      ParentFont = False
-      TabOrder = 4
-      Text = '$F0'
-    end
-    object addrChnRegs: TEdit
-      Left = 144
-      Height = 24
-      Top = 69
-      Width = 64
-      Alignment = taRightJustify
-      AutoSize = False
-      BorderStyle = bsNone
-      CharCase = ecUppercase
-      Enabled = False
-      Font.CharSet = EASTEUROPE_CHARSET
-      Font.Color = clBlack
-      Font.Height = -16
-      Font.Name = 'Segoe UI'
-      Font.Pitch = fpVariable
-      Font.Quality = fqDraft
-      MaxLength = 6
-      ParentFont = False
-      TabOrder = 5
-      Text = '$6C0'
+    object butDelProfile: TSpeedButton
+      Left = 416
+      Height = 22
+      Hint = 'Delete current profile'
+      Top = 7
+      Width = 23
+      Flat = True
+      Glyph.Data = {
+        36040000424D3604000000000000360000002800000010000000100000000100
+        2000000000000004000064000000640000000000000000000000FFFFFF00FFFF
+        FF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFF
+        FF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFF
+        FF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFF
+        FF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFF
+        FF00FFFFFF00FFFFFF00FFFFFC00FFFFF7008A6245008A6245008A6245008A62
+        4500FFFFF700FFFFFC00FDFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFF
+        FF00FFFFFF00FFFFFF00FFFFFB00FFFFF2008A624500CFAC8B00CFAC8B008A62
+        4500FFFFF200FFFFFB00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFF
+        FF00FFFFFC00FFFFFB00FFFFF500FFFFED008A624500CFAC8B00CFAC8B008A62
+        4500FFFFEB00FFFFF500FFFFFB00FFFFFC00FFFFFF00FFFFFF00FFFFFF00FFFF
+        FF00FFFFF800FFFFF200FFFFED00FFFFE6008A624500CFAC8B00CFAC8B008A62
+        4500FFFFE600FFFFED00FFFFF200FFFFF700FFFFFF00FFFFFF00FFFFFF00FFFF
+        FF008A6245FF8A6245FF8A6245FF8A6245FF8A6245FF8A6245FF8A6245FF8A62
+        45FF8A6245FF8A6245FF8A6245FF8A6245FFFFFFFF00FFFFFF00FFFFFF00FFFF
+        FF008A6245FFE8CDB8FFE8CDB8FFE8CDB8FFE8CDB8FFE8CDB8FFE8CDB8FFE8CD
+        B8FFE8CDB8FFE8CDB8FFE8CDB8FF8A6245FFFFFFFF00FFFFFF00FFFFFF00FFFF
+        FF008A6245FFE8CDB8FFE8CDB8FFE8CDB8FFE8CDB8FFE8CDB8FFE8CDB8FFE8CD
+        B8FFE8CDB8FFE8CDB8FFE8CDB8FF8A6245FFFFFFFF00FFFFFF00FFFFFF00FFFF
+        FF008A6245FF8A6245FF8A6245FF8A6245FF8A6245FF8A6245FF8A6245FF8A62
+        45FF8A6245FF8A6245FF8A6245FF8A6245FFFFFFFF00FFFFFF00FFFFFF00FFFF
+        FF00FFFFF700FFFFF200FFFFEB00FFFFE6008A624500CFAC8B00CFAC8B008A62
+        4500FFFFE600FFFFEB00FFFFF100FFFFF700FFFFFF00FFFFFF00FFFFFF00FFFF
+        FF00FFFFFC00FFFFFB00FFFFF500FFFFED008A624500CFAC8B00CFAC8B008A62
+        4500FFFFEB00FFFFF500FFFFF900FFFFFC00FFFFFF00FFFFFF00FFFFFF00FFFF
+        FF00FFFFFF00FFFFFF00FFFFFB00FFFFF2008A624500CFAC8B00CFAC8B008A62
+        4500FFFFF200FFFFFA00FFFFFF00FFFFFE00FFFFFF00FFFFFF00FFFFFF00FFFF
+        FF00FFFFFF00FFFFFF00FFFFFC00FFFFF7008A6245008A6245008A6245008A62
+        4500FFFFF700FFFFFC00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFF
+        FF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFF
+        FF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFF
+        FF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFF
+        FF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00
+      }
+      OnClick = butDelProfileClick
+      ShowHint = True
+      ParentShowHint = False
     end
   end
-  object butStart: TBitBtn
-    Left = 17
-    Height = 72
-    Hint = 'Begin convertion'
-    Top = 416
-    Width = 208
-    Caption = 'START'
-    Default = True
-    Enabled = False
-    Font.Height = -21
-    Font.Name = 'Sans'
-    Font.Style = [fsBold]
-    Kind = bkOK
-    ModalResult = 1
-    OnClick = butStartClick
-    ParentFont = False
-    ParentShowHint = False
-    ShowHint = True
-    TabOrder = 10
-  end
-  object grp_reindex: TRadioGroup
-    Left = 13
-    Height = 80
-    Top = 320
-    Width = 220
-    AutoFill = True
-    Caption = 'Reindex'
-    ChildSizing.LeftRightSpacing = 6
-    ChildSizing.EnlargeHorizontal = crsHomogenousChildResize
-    ChildSizing.EnlargeVertical = crsHomogenousChildResize
-    ChildSizing.ShrinkHorizontal = crsScaleChilds
-    ChildSizing.ShrinkVertical = crsScaleChilds
-    ChildSizing.Layout = cclTopToBottomThenLeftToRight
-    ChildSizing.ControlsPerLine = 2
-    ClientHeight = 60
-    ClientWidth = 216
-    Color = clForm
-    ColumnLayout = clVerticalThenHorizontal
-    Columns = 2
-    ItemIndex = 3
-    Items.Strings = (
-      'SFXs only'
-      'TABs only'
-      'All'
-      'None'
-    )
-    ParentColor = False
-    TabOrder = 7
-  end
-  object ConfigList: TComboBox
-    Left = 88
-    Height = 29
-    Top = 81
-    Width = 308
-    AutoSize = False
-    BorderStyle = bsSingle
-    Font.CharSet = EASTEUROPE_CHARSET
-    Font.Color = clBlack
-    Font.Height = -16
-    Font.Name = 'Segoe UI'
-    Font.Pitch = fpVariable
-    Font.Quality = fqDraft
-    ItemHeight = 21
-    OnSelect = ConfigListSelect
-    ParentFont = False
-    Sorted = True
-    TabOrder = 3
-  end
-  object Label3: TLabel
-    Left = 9
-    Height = 22
-    Top = 83
-    Width = 70
-    Alignment = taRightJustify
-    AutoSize = False
-    Caption = 'Settings:'
-    Layout = tlBottom
-    ParentColor = False
-  end
-  object butAddProfile: TButton
-    Left = 400
-    Height = 29
-    Top = 81
-    Width = 27
-    Caption = '+'
-    Font.Height = -13
-    Font.Name = 'Sans'
-    Font.Style = [fsBold]
-    OnClick = butAddProfileClick
-    ParentFont = False
+  object Options: TPageControl
+    Left = 8
+    Height = 293
+    Top = 144
+    Width = 450
+    ActivePage = tabAPI_Optimize
+    Style = tsFlatButtons
+    TabIndex = 0
     TabOrder = 1
+    Options = [nboHidePageListPopup]
+    object tabAPI_Optimize: TTabSheet
+      Caption = 'General'
+      ClientHeight = 264
+      ClientWidth = 440
+      object grp_apifiles: TCheckGroup
+        Left = 8
+        Height = 88
+        Top = 8
+        Width = 208
+        Align = alCustom
+        AutoFill = True
+        Caption = 'SFX API files'
+        ChildSizing.LeftRightSpacing = 6
+        ChildSizing.TopBottomSpacing = 6
+        ChildSizing.EnlargeHorizontal = crsHomogenousChildResize
+        ChildSizing.EnlargeVertical = crsHomogenousChildResize
+        ChildSizing.ShrinkHorizontal = crsScaleChilds
+        ChildSizing.ShrinkVertical = crsScaleChilds
+        ChildSizing.Layout = cclLeftToRightThenTopToBottom
+        ChildSizing.ControlsPerLine = 1
+        ClientHeight = 70
+        ClientWidth = 206
+        ParentBackground = False
+        ParentColor = False
+        TabOrder = 0
+        object cb_makeConf: TCheckBox
+          Left = 6
+          Height = 29
+          Top = 6
+          Width = 194
+          Caption = 'Make config file'
+          Color = clDefault
+          ParentColor = False
+          TabOrder = 0
+        end
+        object cb_makeRes: TCheckBox
+          Left = 6
+          Height = 29
+          Top = 35
+          Width = 194
+          Caption = 'Make resource file'
+          Color = clDefault
+          ParentColor = False
+          TabOrder = 1
+        end
+      end
+      object grp_reduce: TRadioGroup
+        Left = 8
+        Height = 80
+        Top = 104
+        Width = 208
+        AutoFill = True
+        Caption = 'Reduce'
+        ChildSizing.LeftRightSpacing = 6
+        ChildSizing.EnlargeHorizontal = crsHomogenousChildResize
+        ChildSizing.EnlargeVertical = crsHomogenousChildResize
+        ChildSizing.ShrinkHorizontal = crsScaleChilds
+        ChildSizing.ShrinkVertical = crsScaleChilds
+        ChildSizing.Layout = cclTopToBottomThenLeftToRight
+        ChildSizing.ControlsPerLine = 2
+        ClientHeight = 62
+        ClientWidth = 206
+        ColumnLayout = clVerticalThenHorizontal
+        Columns = 2
+        ItemIndex = 3
+        Items.Strings = (
+          'SFXs only'
+          'TABs only'
+          'All'
+          'None'
+        )
+        ParentBackground = False
+        ParentColor = False
+        TabOrder = 1
+      end
+      object grp_reindex: TRadioGroup
+        Left = 224
+        Height = 80
+        Top = 104
+        Width = 208
+        AutoFill = True
+        Caption = 'Reindex'
+        ChildSizing.LeftRightSpacing = 6
+        ChildSizing.EnlargeHorizontal = crsHomogenousChildResize
+        ChildSizing.EnlargeVertical = crsHomogenousChildResize
+        ChildSizing.ShrinkHorizontal = crsScaleChilds
+        ChildSizing.ShrinkVertical = crsScaleChilds
+        ChildSizing.Layout = cclTopToBottomThenLeftToRight
+        ChildSizing.ControlsPerLine = 2
+        ClientHeight = 62
+        ClientWidth = 206
+        ColumnLayout = clVerticalThenHorizontal
+        Columns = 2
+        ItemIndex = 3
+        Items.Strings = (
+          'SFXs only'
+          'TABs only'
+          'All'
+          'None'
+        )
+        ParentBackground = False
+        ParentColor = False
+        TabOrder = 2
+      end
+    end
+    object tabAddresses: TTabSheet
+      Caption = 'Addresses'
+      ClientHeight = 264
+      ClientWidth = 440
+      object HeaderControl1: THeaderControl
+        Left = 0
+        Height = 30
+        Top = 0
+        Width = 440
+        DragReorder = False
+        Sections = <        
+          item
+            Alignment = taLeftJustify
+            MaxWidth = 25
+            MinWidth = 25
+            Width = 25
+            Visible = True
+          end        
+          item
+            Alignment = taCenter
+            MaxWidth = 110
+            MinWidth = 110
+            Text = 'Block name'
+            Width = 110
+            Visible = True
+          end        
+          item
+            Alignment = taCenter
+            MaxWidth = 75
+            MinWidth = 75
+            Text = 'Address'
+            Width = 75
+            Visible = True
+          end        
+          item
+            Alignment = taLeftJustify
+            MinWidth = 100
+            Text = 'File name'
+            Width = 235
+            Visible = True
+          end>
+        Align = alTop
+        Enabled = False
+      end
+    end
+    object tabBuf_Regs: TTabSheet
+      Caption = 'Buffer/Registers'
+      ClientHeight = 264
+      ClientWidth = 440
+      object HeaderControl2: THeaderControl
+        Left = 0
+        Height = 30
+        Top = 0
+        Width = 440
+        DragReorder = False
+        Sections = <        
+          item
+            Alignment = taLeftJustify
+            MaxWidth = 25
+            MinWidth = 25
+            Width = 25
+            Visible = True
+          end        
+          item
+            Alignment = taCenter
+            MaxWidth = 110
+            MinWidth = 110
+            Text = 'Block name'
+            Width = 110
+            Visible = True
+          end        
+          item
+            Alignment = taCenter
+            MaxWidth = 75
+            MinWidth = 75
+            Text = 'Address'
+            Width = 75
+            Visible = True
+          end        
+          item
+            Alignment = taLeftJustify
+            MinWidth = 100
+            Text = 'File name'
+            Width = 235
+            Visible = True
+          end>
+        Align = alTop
+        Enabled = False
+      end
+    end
+    object tabAbout: TTabSheet
+      Caption = 'About'
+      ClientHeight = 264
+      ClientWidth = 440
+      object Label3: TLabel
+        Left = 0
+        Height = 62
+        Top = 0
+        Width = 440
+        Align = alTop
+        Alignment = taCenter
+        AutoSize = False
+        Caption = 'GUI for SMM Converter'
+        Font.Height = -24
+        Font.Name = 'Sans'
+        Font.Style = [fsBold]
+        Layout = tlCenter
+        ParentFont = False
+      end
+      object memAbout: TMemo
+        Left = 10
+        Height = 202
+        Top = 62
+        Width = 420
+        Align = alClient
+        Alignment = taCenter
+        BorderSpacing.Left = 10
+        BorderSpacing.Right = 10
+        BorderStyle = bsNone
+        Color = clForm
+        Enabled = False
+        Lines.Strings = (
+          'memAbout'
+        )
+        ReadOnly = True
+        TabOrder = 0
+      end
+    end
   end
-  object butDelProfile: TButton
-    Left = 429
-    Height = 29
-    Top = 81
-    Width = 27
-    Caption = '-'
-    Font.Height = -13
-    Font.Name = 'Sans'
-    Font.Style = [fsBold]
-    OnClick = butDelProfileClick
-    ParentFont = False
-    TabOrder = 4
-  end
-  object butAbout: TButton
-    Left = 17
-    Height = 27
-    Top = 496
-    Width = 208
-    Caption = 'About'
-    OnClick = butAboutClick
-    TabOrder = 11
-  end
-  object FileInName: TFileNameEdit
+  object SourceName: TFileNameEdit
     Left = 88
     Height = 31
+    Hint = 'Select source file (Music file)'
     Top = 3
     Width = 368
+    FileName = '/home/pebe/Atari/HDD/TATQOO - KRET.SMM'
     DialogOptions = [ofPathMustExist, ofFileMustExist, ofEnableSizing, ofViewDetail]
     Filter = 'SMM Files|*.SMM;*.smm|All Files|*.*'
     FilterIndex = 0
@@ -635,14 +408,41 @@ object FormMain: TFormMain
     Font.Quality = fqDraft
     MaxLength = 0
     ParentFont = False
-    TabOrder = 0
-    OnChange = fileInNameChange
+    ParentShowHint = False
+    ShowHint = True
+    TabOrder = 2
+    Text = '/home/pebe/Atari/HDD/TATQOO - KRET.SMM'
   end
-  object FileOutName: TFileNameEdit
-    Left = 88
+  object Label2: TLabel
+    Left = 8
+    Height = 17
+    Top = 50
+    Width = 78
+    Align = alCustom
+    Alignment = taRightJustify
+    AutoSize = False
+    Caption = 'Output file:'
+    Layout = tlBottom
+  end
+  object Label1: TLabel
+    Left = 8
+    Height = 19
+    Top = 11
+    Width = 78
+    Alignment = taRightJustify
+    AutoSize = False
+    Caption = 'Source:'
+    Layout = tlCenter
+  end
+  object OutputName: TFileNameEdit
+    Left = 90
     Height = 31
+    Hint = 'The primary output file associated with the Origin address.'
     Top = 40
     Width = 368
+    HelpType = htKeyword
+    HelpKeyword = 'html/outputfile.html'
+    FileName = '/home/pebe/tmp/song/music.asm'
     DialogKind = dkSave
     DialogOptions = [ofOverwritePrompt, ofExtensionDifferent, ofPathMustExist, ofCreatePrompt, ofEnableSizing, ofViewDetail]
     FilterIndex = 0
@@ -660,7 +460,34 @@ object FormMain: TFormMain
     Font.Quality = fqDraft
     MaxLength = 0
     ParentFont = False
-    TabOrder = 2
-    OnChange = fileOutNameChange
+    ParentShowHint = False
+    ShowHint = True
+    TabOrder = 3
+    Text = '/home/pebe/tmp/song/music.asm'
+  end
+  object butStart: TSpeedButton
+    Left = 10
+    Height = 57
+    Top = 447
+    Width = 446
+    Caption = 'START'
+    Font.Height = -19
+    Font.Name = 'Sans'
+    Font.Style = [fsBold]
+    OnClick = butStartClick
+    ParentFont = False
+  end
+  object HTMLHelpDB: THTMLHelpDatabase
+    BaseURL = 'file:///home/pebe/Projekty/sfx-conv-app/help'
+    AutoRegister = True
+    KeywordPrefix = 'html/'
+    Left = 285
+    Top = 496
+  end
+  object HTMLHelpViewer: THTMLBrowserHelpViewer
+    BrowserParams = '%s'
+    AutoRegister = True
+    Left = 413
+    Top = 496
   end
 end

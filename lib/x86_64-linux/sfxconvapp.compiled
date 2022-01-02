@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CONFIG>
-  <Compiler Value="/usr/bin/fpc" Date="1548372422"/>
-  <Params Value=" -MObjFPC -Scaghi -Cg -CirotR -O1 -gw2 -godwarfsets -gl -Xg -gt -l -vewnhibq -Fi/home/pebe/Projekty/sfx-conv-app/lib/x86_64-linux -Fu/usr/lib/lazarus/2.0.0/lcl/units/x86_64-linux/gtk2 -Fu/usr/lib/lazarus/2.0.0/lcl/units/x86_64-linux -Fu/usr/lib/lazarus/2.0.0/components/lazutils/lib/x86_64-linux -Fu/usr/lib/lazarus/2.0.0/packager/units/x86_64-linux -Fu/home/pebe/Projekty/sfx-conv-app/ -FU/home/pebe/Projekty/sfx-conv-app/lib/x86_64-linux/ -FE/home/pebe/Projekty/sfx-conv-app/bin/ -o/home/pebe/Projekty/sfx-conv-app/bin/gui4smmconv -dLCL -dLCLgtk2 sfxconvapp.lpr"/>
+  <Compiler Value="/usr/bin/fpc" Date="1625802185"/>
+  <Params Value=" -MObjFPC -Scaghi -Cg -CirotR -O1 -gw2 -godwarfsets -gl -Xg -gt -l -vewnhibq -Fi/home/pebe/Projekty/sfx-conv-app/lib/x86_64-linux -Fu/usr/share/lazarus/2.2.0RC2/components/synedit/units/x86_64-linux/gtk2 -Fu/usr/share/lazarus/2.2.0RC2/lcl/units/x86_64-linux/gtk2 -Fu/usr/share/lazarus/2.2.0RC2/lcl/units/x86_64-linux -Fu/usr/share/lazarus/2.2.0RC2/components/freetype/lib/x86_64-linux -Fu/usr/share/lazarus/2.2.0RC2/components/lazutils/lib/x86_64-linux -Fu/usr/share/lazarus/2.2.0RC2/packager/units/x86_64-linux -Fu/home/pebe/Projekty/sfx-conv-app/ -FU/home/pebe/Projekty/sfx-conv-app/lib/x86_64-linux/ -FE/home/pebe/Projekty/sfx-conv-app/bin/ -o/home/pebe/Projekty/sfx-conv-app/bin/gui4smmconv -dLCL -dLCLgtk2 sfxconvapp.lpr"/>
 </CONFIG>
