@@ -5,7 +5,7 @@ author: GSD
 ---
 # GDI for SMM Converter
 
-Program jest graficznym interfejsem (nakładką) na program SMM Converter.
+Program jest graficznym interfejsem (nakładką) na program **SMM Converter**.
 
 # Główne okno programu
 
@@ -34,13 +34,13 @@ Plik musi być zgodny z formatem **SMM**, czyli **SFX Music Maker (aka SFX Track
 
 Określa podstawowy plik wyjściowy. Jest on powiązany z blokiem danych **Origin**, umieszczonym w zakładce **Addresses** konfiguracji profilu.
 
-Plikiem wynikowym jest źródło w Assemblerze o domyślnym rozszerzeniu '.asm'
+Plikiem wynikowym jest źródło w **assemblerze** o domyślnym rozszerzeniu `.asm`
 
 
 
 ## Profile
 
-Umozliwia proste zarządzanie profilami poprzez **listę wyboru** oraz możliwość **tworzenia nowych** profili, ich **aktualizacji** oraz **usówania istniejących** profili.
+Umożliwia proste zarządzanie profilami poprzez **listę wyboru** oraz możliwość **tworzenia nowych** profili, ich **aktualizacji** oraz **usuwania istniejących** profili.
 
 W profilu zapisywane są wszystkie definiowane w konfiguracji parametry.
 
@@ -54,7 +54,7 @@ Aby utworzyć nowy profil, należy go uprzednio skonfigurować. Następnie klika
 
 #### Aktualizacja profilu
 
-Aktualizacji można dokonać podając istniejącą nazwę profilu przy jego tworzeniu. Użytkownik zostanie poinformowany monitem "Profil o podanej nazwie istnieje" i pytaniu, "Czy chcesz go zaktualizować?"
+Aktualizacji można dokonać podając istniejącą nazwę profilu przy jego tworzeniu. Użytkownik zostanie poinformowany monitem _"Profil o podanej nazwie istnieje"_ i pytaniu, _"Czy chcesz go zaktualizować?"_
 
 ![](./imgs/profile-update.png)
 
@@ -62,9 +62,9 @@ Odpowiadając **Tak**, dokonasz aktualizacji konfiguracji profilu.
 
 ### Przycisk `-`
 
-#### Usówanie profilu
+#### Usuwanie profilu
 
-Usunięcie proilu należy zacząć od jego wybrania z **listy wyboru profili**, poczym należy nacisnąć **przycisk minus**. Pojawi się monit z pytaniem "Czy usunąć profil?".
+Usunięcie profilu należy zacząć od jego wybrania z **listy wyboru profili**, po czym, należy nacisnąć **przycisk minus**. Pojawi się monit z pytaniem _"Czy usunąć profil?"_.
 
 ![](./imgs/profile-delete.png)
 
@@ -88,7 +88,7 @@ W tej części zawarta jest jeszcze zakładka **About**, czyli informacje o prog
 
 Grupa pozwalająca ustalić, jakie pliki dla **SFX API** mają być wygenerowane przez konwerter.
 
-- **Make config file** - to plik zawierający definicje stałych wykorzystywanych przez **SFX-Engin**e oraz **SFX API** dla **MAD Pascala**
+- **Make config file** - to plik zawierający definicje stałych wykorzystywanych przez **SFX-Engine** oraz **SFX API** dla **MAD Pascala**
 - **Make resource file** - plik z definicjami zasobów dla **MAD Pascala**
 
 #### Reduce
@@ -101,7 +101,7 @@ Elementy które mogą być poddane redukcji to definicje **SFXów** oraz **TABó
 
 W tej grupie można określić, które dane będą poddane **reindeksacji**.
 
-**Reindeksacja** pozwala oszczędzić miejsce w pamieci, poprzez kompaktowe umieszczenie elementów. Wyeliminowanie luk (ang. Gaps) w tablicach pozwala je skrócić.
+**Reindeksacja** pozwala oszczędzić miejsce w pamięci Atari, poprzez kompaktowe umieszczenie elementów. Wyeliminowanie luk (ang. Gaps) w tablicach pozwala je skrócić.
 
 Elementy jakie mogą być poddane reindeksacji to definicje **SFXów** oraz **TABów**.
 
@@ -122,13 +122,13 @@ Zakładka pozwala określić, rozmieszczenie bloków danych w pamięci Atari.
 
 Szczególnym rodzajem bloku, jest blok **Origin**, który jest podstawowym blokiem danych, tzn. w przypadku niezdefiniowania adresów innych bloków to właśnie w nim, będą umieszczane dane.
 
-Dla każdego bloku danych, można określić jego adres początkowy, określając go w kolumnie **Address**. Można w tym celu użyć zapisu dziesiętnego lub szesnastkowego. Dla rozróżnienia tego zapisu, sotoswany jest symbol dolara `$` lub prefix `0x` na początku adresu.
+Dla każdego bloku danych, można określić jego adres początkowy, określając go w kolumnie **Address**. Można w tym celu użyć zapisu dziesiętnego lub szesnastkowego. Dla rozróżnienia tego zapisu, stosowany jest symbol dolara `$` lub prefix `0x` na początku adresu.
 
 W przypadku niepodania adresu początkowego lub podania wartości zero `0`, blok danych będzie dołączony do bloku **Origin**, kontynuując jego adres.
 
 Określenie nazwy pliku dla danego bloku, pozwoli wygenerować dla niego osobny plik, jednak, gdy jego adres nie będzie określony, tak się nie stanie.
 
-Generowany plik, będzie umieszczony w katalogu, ktory jest określony w **Output file**; lub w przypadku jego nieokreślenia w **Output file**, w katalogu który wyznacza **Source**
+Generowany plik, będzie umieszczony w katalogu, który jest określony w **Output file**; lub w przypadku jego nieokreślenia w **Output file**, w katalogu który wyznacza **Source**
 
 ### Buffer/Registers
 
