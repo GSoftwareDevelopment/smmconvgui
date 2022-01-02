@@ -1,5 +1,6 @@
 ---
-layout: page
+title: GUI for SMM Converter
+description: Plik pomocy
 ---
 
 # Główne okno programu
